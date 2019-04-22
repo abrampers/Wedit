@@ -1,0 +1,4 @@
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/app/build/CMakeFiles/rebuild_cache.dir
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/app/build/CMakeFiles/edit_cache.dir
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/app/build/CMakeFiles/dummy_server.dir
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/app/build/CMakeFiles/wedit.dir
