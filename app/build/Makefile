@@ -111,84 +111,84 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named dummy_server
+# Target rules for targets named server
 
 # Build rule for target.
-dummy_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dummy_server
-.PHONY : dummy_server
+server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 server
+.PHONY : server
 
 # fast build rule for target.
-dummy_server/fast:
-	$(MAKE) -f CMakeFiles/dummy_server.dir/build.make CMakeFiles/dummy_server.dir/build
-.PHONY : dummy_server/fast
+server/fast:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
 
 #=============================================================================
-# Target rules for targets named wedit
+# Target rules for targets named client
 
 # Build rule for target.
-wedit: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 wedit
-.PHONY : wedit
+client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client
+.PHONY : client
 
 # fast build rule for target.
-wedit/fast:
-	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/build
-.PHONY : wedit/fast
+client/fast:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
 
-src/dummy_server.o: src/dummy_server.cpp.o
+src/client.o: src/client.cpp.o
 
-.PHONY : src/dummy_server.o
-
-# target to build an object file
-src/dummy_server.cpp.o:
-	$(MAKE) -f CMakeFiles/dummy_server.dir/build.make CMakeFiles/dummy_server.dir/src/dummy_server.cpp.o
-.PHONY : src/dummy_server.cpp.o
-
-src/dummy_server.i: src/dummy_server.cpp.i
-
-.PHONY : src/dummy_server.i
-
-# target to preprocess a source file
-src/dummy_server.cpp.i:
-	$(MAKE) -f CMakeFiles/dummy_server.dir/build.make CMakeFiles/dummy_server.dir/src/dummy_server.cpp.i
-.PHONY : src/dummy_server.cpp.i
-
-src/dummy_server.s: src/dummy_server.cpp.s
-
-.PHONY : src/dummy_server.s
-
-# target to generate assembly for a file
-src/dummy_server.cpp.s:
-	$(MAKE) -f CMakeFiles/dummy_server.dir/build.make CMakeFiles/dummy_server.dir/src/dummy_server.cpp.s
-.PHONY : src/dummy_server.cpp.s
-
-src/main.o: src/main.cpp.o
-
-.PHONY : src/main.o
+.PHONY : src/client.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/client.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.o
+.PHONY : src/client.cpp.o
 
-src/main.i: src/main.cpp.i
+src/client.i: src/client.cpp.i
 
-.PHONY : src/main.i
+.PHONY : src/client.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/client.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
 
-src/main.s: src/main.cpp.s
+src/client.s: src/client.cpp.s
 
-.PHONY : src/main.s
+.PHONY : src/client.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/client.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
+
+src/server.o: src/server.cpp.o
+
+.PHONY : src/server.o
+
+# target to build an object file
+src/server.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server.cpp.o
+.PHONY : src/server.cpp.o
+
+src/server.i: src/server.cpp.i
+
+.PHONY : src/server.i
+
+# target to preprocess a source file
+src/server.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server.cpp.i
+.PHONY : src/server.cpp.i
+
+src/server.s: src/server.cpp.s
+
+.PHONY : src/server.s
+
+# target to generate assembly for a file
+src/server.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server.cpp.s
+.PHONY : src/server.cpp.s
 
 # Help Target
 help:
@@ -198,14 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... dummy_server"
-	@echo "... wedit"
-	@echo "... src/dummy_server.o"
-	@echo "... src/dummy_server.i"
-	@echo "... src/dummy_server.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... server"
+	@echo "... client"
+	@echo "... src/client.o"
+	@echo "... src/client.i"
+	@echo "... src/client.s"
+	@echo "... src/server.o"
+	@echo "... src/server.i"
+	@echo "... src/server.s"
 .PHONY : help
 
 
