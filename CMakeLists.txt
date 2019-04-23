@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(wedit)
 
-find_package(Boost REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIRS})
+target_include_directories(wedit "include/")
 
-add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
+set(SOURCES file.cpp file2.cpp ${YOUR_DIRECTORY}/file1.h ${YOUR_DIRECTORY}/file2.h)
+
+add_executable(test ${SOURCES})
 
 add_executable(wedit-app apps/app.cc)
 add_executable(wedit-server apps/server.cc)

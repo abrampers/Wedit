@@ -4,4 +4,8 @@
 using namespace boost::asio;
 using namespace std;
 
-class Connection
+class Connection {
+    private:
+        
+    public:
+}
