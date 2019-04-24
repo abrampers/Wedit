@@ -33,7 +33,10 @@ Peer::Peer(int portNumber): portNumber(portNumber) {
     }
 
     // Connect to all connected peers
-    std::vector<std::pair<std::string, int> > connected_ip; 
+    std::vector<std::pair<std::string, int> > connected_ip = getConnectedIP(); 
+    for(int i = 0; i < connected_ip.size(); i++) {
+        this->connect(connected_ip[i].first, connected_ip[i].second);
+    }
 
     // this->accept();
     serverThread = std::thread(&Peer::accept, std::ref(*this));
@@ -192,9 +195,6 @@ std::vector<std::pair<std::string, int> > Peer::getConnectedIP() {
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
-
-    res.push_back(std::make_pair("0.0.0.0", 5000));
-
 
     std::pair<int, int> payload;
     portno = atoi("8080");

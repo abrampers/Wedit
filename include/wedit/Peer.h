@@ -18,6 +18,8 @@
 #include <sys/time.h>
 #include <netdb.h> 
 
+#include "crdt.h"
+
 const int MAX_PENDING = 10;
 
 const std::string SERVER_HOST = "0.0.0.0";
@@ -32,6 +34,8 @@ private:
     fd_set readfds;
     int max_sd;
     std::thread serverThread;
+
+    CRDT crdt;
 
     /* Method */
     void accept();

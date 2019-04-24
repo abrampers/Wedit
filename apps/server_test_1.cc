@@ -6,7 +6,7 @@ int main() {
     std::string huyu;
 
     Peer p(5000);
-    p.getConnectedIP();
+    // p.getConnectedIP();
 
     return 0;
 }

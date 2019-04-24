@@ -5,7 +5,7 @@
 int main() {
 
     Peer p(8000);
-    p.getConnectedIP();
+    // p.getConnectedIP();
 
     return 0;
 }

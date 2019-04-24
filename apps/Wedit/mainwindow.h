@@ -8,6 +8,8 @@
 #include <QTextStream>
 #include <QMessageBox>
 
+#include "Peer.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -43,10 +45,12 @@ private slots:
 
 public slots:
     void printPosition();
+    void onDocumentChange(int pos, int del, int add);
 
 private:
     Ui::MainWindow *ui;
     QString currentFile = "";
+    Peer peer;
 };
 
 #endif // MAINWINDOW_H
