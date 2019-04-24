@@ -34,11 +34,20 @@ Item CRDT::LocalDelete(uint32_t index) {
 void CRDT::RemoteInsert(Item item) {
     uint32_t index = this->FindInsertIndex(item);
     if (index != UINT32_MAX) this->items.insert(this->items.begin() + index, item); // Item doesn't exist
+    this->IncrementPeerCounter(item.uid.site_id);
+    this->ProcessRemoteDeletionBuffer();
 }
 
 void CRDT::RemoteDelete(Item item) {
-    uint32_t index = this->FindIndex(item);
-    if (index != UINT32_MAX) this->items.erase(this->items.begin() + index); // Item already exists
+    this->remote_deletion_buffer.push_back(item);
+    this->IncrementPeerCounter(item.uid.site_id);
+    this->ProcessRemoteDeletionBuffer();
+}
+
+void CRDT::PrintItems() {
+    for (uint32_t i = 0; i < this->items.size(); i ++) {
+        cout << this->items[i].ToString() << endl;
+    }
 }
 
 vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
@@ -136,8 +145,25 @@ uint32_t CRDT::FindInsertIndex(Item item) {
     else return UINT32_MAX; // Item already exists
 }
 
-void CRDT::PrintItems() {
-    for (uint32_t i = 0; i < this->items.size(); i ++) {
-        cout << this->items[i].ToString() << endl;
+void CRDT::IncrementPeerCounter(uint32_t site_id) {
+    if (this->peer_counters.find(site_id) == this->peer_counters.end()) {
+        this->peer_counters[site_id] = 1;
+    } else {
+        this->peer_counters[site_id] ++;
+    }
+}
+
+void CRDT::ExecuteRemoteDelete(Item item) {
+    uint32_t index = this->FindIndex(item);
+    if (index != UINT32_MAX) this->items.erase(this->items.begin() + index); // Item already exists
+}
+
+void CRDT::ProcessRemoteDeletionBuffer() {
+    for (uint32_t i = 0; i < this->remote_deletion_buffer.size(); i ++) {
+        Item item = this->remote_deletion_buffer[i];
+        if (this->peer_counters[item.uid.site_id] >= item.uid.site_counter) {
+            this->ExecuteRemoteDelete(item);
+            this->remote_deletion_buffer.erase(this->remote_deletion_buffer.begin() + i);
+        }
     }
 }
