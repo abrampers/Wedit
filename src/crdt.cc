@@ -33,10 +33,16 @@ Item CRDT::LocalDelete(uint32_t index) {
 
 void CRDT::RemoteInsert(char *data) {
     Item item(data);
+    cout << "ewewzzzzz" << item.value << endl;
+    cout << "asdsadsadsadas" << item.uid.site_id << "," << item.uid.site_counter << endl;
     uint32_t index = this->FindInsertIndex(item);
+    cout << "kentu\n";
     if (index != UINT32_MAX) this->items.insert(this->items.begin() + index, item); // Item doesn't exist
+    cout << "jembut\n";
     this->IncrementPeerCounter(item.uid.site_id);
+    cout << "kontoll\n";
     this->ProcessRemoteDeletionBuffer();
+    cout << "tempik\n";
 }
 
 void CRDT::RemoteDelete(char *data) {
@@ -137,13 +143,24 @@ bool CRDT::GetStrategyAtDepth(uint32_t depth) {
 
 uint32_t CRDT::FindIndex(Item item) {
     vector<Item>::iterator iter = lower_bound(this->items.begin(), this->items.end(), item);
-    if (*iter == item) return ((uint32_t) (iter - this->items.begin()));
+    if (iter == this->items.end()) return UINT32_MAX;
+    else if (*iter == item) return ((uint32_t) (iter - this->items.begin()));
     else return UINT32_MAX; // Item doesn't exist
 }
 
 uint32_t CRDT::FindInsertIndex(Item item) {
+    // cout << "jembutzzz\n";
     vector<Item>::iterator iter = lower_bound(this->items.begin(), this->items.end(), item);
-    if (!(*iter == item)) return ((uint32_t) (iter - this->items.begin()));
+    // if (iter == this->items.end()) {
+    //     cout << "olha jembut\n";
+    // }
+    // cout << "asuuuuuuMM\n";
+    // cout << item.uid.site_id << "," << item.uid.site_counter << endl;
+    // cout << item.uid.global_index.size() << endl;
+    // cout << "kintil\n";
+    // cout << (*iter).uid.global_index.size() << endl;
+    if (iter == this->items.end()) return ((uint32_t) 0);
+    else if (!((*iter) == item)) return ((uint32_t) (iter - this->items.begin()));
     else return UINT32_MAX; // Item already exists
 }
 

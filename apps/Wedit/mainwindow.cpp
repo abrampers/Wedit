@@ -106,15 +106,24 @@ void MainWindow::textDidChange() {
 
 void MainWindow::change(int pos, int del, int add) {
     // std::cout << pos << " " << del << " " << add << std::endl;
-   if (del == 0) {
+   if (del == 0 && add != 0) {
        QString added = ui->textEdit->toPlainText().mid(pos,add);
        std::cout << added.toStdString() << std::endl;
        Item item = peer.crdt.LocalInsert(added.toStdString()[0], pos);
-       peer.Send(item.Serialize(true));
-   } else {
+       char* data = (char*) malloc(1024);
+       data = item.Serialize(true);
+       Item itemasu(data);
+       uint32_t act;
+       memcpy(&act, data, 4);
+       int size = 4 + 1 + 4 + 4 + (item.uid.global_index.size() * 4);
+       std::cout << "jembut " << act << std::endl;
+       std::cout << "kentuuuu " << itemasu.value << std::endl;
+       peer.Send(item.Serialize(true), size);
+   } else if (add == 0 && del != 0) {
        std::cout << pos << "ewe" << std::endl;
        Item item = peer.crdt.LocalDelete(pos);
-       peer.Send(item.Serialize(false));
+       int size = 4 + 1 + 4 + 4 + (item.uid.global_index.size() * 4);
+       peer.Send(item.Serialize(false), size);
    }
 }
 

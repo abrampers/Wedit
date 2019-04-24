@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QTimer>
 #include "peer.h"
 
 namespace Ui {

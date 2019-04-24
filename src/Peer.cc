@@ -137,19 +137,24 @@ void Peer::accept() {
                 } else { 
                     //set the string terminating NULL byte on the end  
                     //of the data read  
-                    buffer[valread] = '\0';
-                    printf("%d\n", valread);
+                    // buffer[valread] = '\0';
+                    // printf("%d\n", valread);
                     // Handle every incoming message here;
-                    printf("memew%s\n", buffer);
-                    int action;
-                    memcpy(&action, buffer, 1);
+                    // printf("memew%s\n", buffer);
+                    uint32_t action;
+                    memcpy(&action, buffer, 4);
                     puts("kento");
-                    if(action == 0x1) {
+                    std::cout << action << "asuuuuuu\n";
+                    if(action == 1) {
+                        puts("jancok");
                         crdt.RemoteInsert(buffer);
-                    } else if(action == 0x2) {
+                    } else if(action == 2) {
                         crdt.RemoteDelete(buffer);
+                        // puts("awang");
+                    } else {
+                        continue;
                     }
-
+                    cout << "kontol lu anjing\n";
                     std::string new_str = crdt.GetString();
                     w->setText(new_str);
 
@@ -161,12 +166,17 @@ void Peer::accept() {
     }
 }
 
-void Peer::Send(std::string payload) const {
-    for (auto& sd: client_sock_IDs) {
+void Peer::Send(char* payload, int size) const {
+    for (auto sd: client_sock_IDs) {
         puts("sending");
-        if( ::write(sd, payload.c_str(), strlen(payload.c_str())) != strlen(payload.c_str())) {
+        uint32_t action;
+        char value;
+        memcpy(&action, payload, 4);
+        memcpy(&value, payload+4, 1);
+        std::cout << action << value << "jembut\n";
+        if( ::write(sd, payload, size ) != size) {
             puts("error");
-            perror("send");   
+            perror("send");
         }  
     }
 }

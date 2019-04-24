@@ -5,6 +5,7 @@
 #include <utility>
 #include <string>
 #include <thread>
+#include <future>
 
 #include <stdio.h>  
 #include <string.h>   //strlen  
@@ -47,10 +48,11 @@ public:
     ~Peer();
 
     int Connect(std::string host, int port);
-    void Send(std::string payload) const;
+    void Send(char* payload, int size) const;
 
     std::vector<std::pair<std::string, int> > GetConnectedIP();
     void Test();
+    void UpdateText();
 };
 
 #endif
