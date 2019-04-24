@@ -1,4 +1,4 @@
-#include "Peer.hpp"
+#include "Peer.h"
 
 void error(const char *msg) {
     perror(msg);
@@ -110,7 +110,7 @@ void Peer::accept() {
             puts("Welcome message sent successfully"); 
 
             clientSockIDs.push_back(new_socket);  
-            printf("Adding to list of sockets as %d\n" , clientSockIDs.size() - 1);
+            printf("Adding to list of sockets as %lu\n" , clientSockIDs.size() - 1);
                  
         }   
              
@@ -135,7 +135,7 @@ void Peer::accept() {
                     buffer[valread] = '\0'; 
                     // Handle every incoming message here;
 
-                    printf(buffer);
+                    // printf(buffer);
                     // ::send(sd , buffer , strlen(buffer) , 0 );   
                 }   
             }   
@@ -223,7 +223,7 @@ std::vector<std::pair<std::string, int> > Peer::getConnectedIP() {
     printf("%d\n", n);
     
     for(int i = 0; i < res.size(); i++) {
-        printf("HOST %s, PORT %d\n", res[i].first, res[i].second);
+        printf("HOST %s, PORT %d\n", res[i].first.c_str(), res[i].second);
     }
     
     close(sockfd);

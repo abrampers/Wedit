@@ -19,3 +19,15 @@ target_link_libraries(
 )
 
 add_executable(wedit_server apps/server.cc)
+
+add_executable(wedit_peer_test_1 apps/server_test_1.cc)
+target_link_libraries(
+    wedit_peer_test_1
+    wedit_lib
+)
+
+add_executable(wedit_peer_test_2 apps/server_test_2.cc)
+target_link_libraries(
+    wedit_peer_test_2
+    wedit_lib
+)
