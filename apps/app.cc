@@ -1,10 +1,11 @@
-#include "wedit/connection_manager.h"
+#include <iostream>
 
-#include <iostream>  
+#include "crdt.h"
+#include "uid.h"
 
 using namespace std;
 
 int main() {
-    ConnectionManager connection_manager("127.0.0.1", 5555);
+    CRDT cdrt;
     return 0;
 }  

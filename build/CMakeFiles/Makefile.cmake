@@ -88,7 +88,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake"
   "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake"
   "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake"
-  "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/FindBoost.cmake"
   "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/Internal/FeatureTesting.cmake"
   "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/Platform/Darwin-AppleClang-C.cmake"
   "/usr/local/Cellar/cmake/3.10.1/share/cmake/Modules/Platform/Darwin-Clang-C.cmake"
@@ -119,6 +118,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/wedit-server.dir/DependInfo.cmake"
-  "CMakeFiles/wedit-app.dir/DependInfo.cmake"
+  "CMakeFiles/wedit.dir/DependInfo.cmake"
+  "CMakeFiles/wedit_lib.dir/DependInfo.cmake"
   )

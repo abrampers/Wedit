@@ -111,30 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named wedit-server
+# Target rules for targets named wedit
 
 # Build rule for target.
-wedit-server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 wedit-server
-.PHONY : wedit-server
+wedit: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 wedit
+.PHONY : wedit
 
 # fast build rule for target.
-wedit-server/fast:
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/build
-.PHONY : wedit-server/fast
+wedit/fast:
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/build
+.PHONY : wedit/fast
 
 #=============================================================================
-# Target rules for targets named wedit-app
+# Target rules for targets named wedit_lib
 
 # Build rule for target.
-wedit-app: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 wedit-app
-.PHONY : wedit-app
+wedit_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 wedit_lib
+.PHONY : wedit_lib
 
 # fast build rule for target.
-wedit-app/fast:
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/build
-.PHONY : wedit-app/fast
+wedit_lib/fast:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/build
+.PHONY : wedit_lib/fast
 
 apps/app.o: apps/app.cc.o
 
@@ -142,7 +142,7 @@ apps/app.o: apps/app.cc.o
 
 # target to build an object file
 apps/app.cc.o:
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/apps/app.cc.o
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/apps/app.cc.o
 .PHONY : apps/app.cc.o
 
 apps/app.i: apps/app.cc.i
@@ -151,7 +151,7 @@ apps/app.i: apps/app.cc.i
 
 # target to preprocess a source file
 apps/app.cc.i:
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/apps/app.cc.i
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/apps/app.cc.i
 .PHONY : apps/app.cc.i
 
 apps/app.s: apps/app.cc.s
@@ -160,35 +160,89 @@ apps/app.s: apps/app.cc.s
 
 # target to generate assembly for a file
 apps/app.cc.s:
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/apps/app.cc.s
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/apps/app.cc.s
 .PHONY : apps/app.cc.s
 
-apps/server.o: apps/server.cc.o
+src/crdt.o: src/crdt.cc.o
 
-.PHONY : apps/server.o
+.PHONY : src/crdt.o
 
 # target to build an object file
-apps/server.cc.o:
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/apps/server.cc.o
-.PHONY : apps/server.cc.o
+src/crdt.cc.o:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/crdt.cc.o
+.PHONY : src/crdt.cc.o
 
-apps/server.i: apps/server.cc.i
+src/crdt.i: src/crdt.cc.i
 
-.PHONY : apps/server.i
+.PHONY : src/crdt.i
 
 # target to preprocess a source file
-apps/server.cc.i:
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/apps/server.cc.i
-.PHONY : apps/server.cc.i
+src/crdt.cc.i:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/crdt.cc.i
+.PHONY : src/crdt.cc.i
 
-apps/server.s: apps/server.cc.s
+src/crdt.s: src/crdt.cc.s
 
-.PHONY : apps/server.s
+.PHONY : src/crdt.s
 
 # target to generate assembly for a file
-apps/server.cc.s:
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/apps/server.cc.s
-.PHONY : apps/server.cc.s
+src/crdt.cc.s:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/crdt.cc.s
+.PHONY : src/crdt.cc.s
+
+src/item.o: src/item.cc.o
+
+.PHONY : src/item.o
+
+# target to build an object file
+src/item.cc.o:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/item.cc.o
+.PHONY : src/item.cc.o
+
+src/item.i: src/item.cc.i
+
+.PHONY : src/item.i
+
+# target to preprocess a source file
+src/item.cc.i:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/item.cc.i
+.PHONY : src/item.cc.i
+
+src/item.s: src/item.cc.s
+
+.PHONY : src/item.s
+
+# target to generate assembly for a file
+src/item.cc.s:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/item.cc.s
+.PHONY : src/item.cc.s
+
+src/uid.o: src/uid.cc.o
+
+.PHONY : src/uid.o
+
+# target to build an object file
+src/uid.cc.o:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/uid.cc.o
+.PHONY : src/uid.cc.o
+
+src/uid.i: src/uid.cc.i
+
+.PHONY : src/uid.i
+
+# target to preprocess a source file
+src/uid.cc.i:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/uid.cc.i
+.PHONY : src/uid.cc.i
+
+src/uid.s: src/uid.cc.s
+
+.PHONY : src/uid.s
+
+# target to generate assembly for a file
+src/uid.cc.s:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/uid.cc.s
+.PHONY : src/uid.cc.s
 
 # Help Target
 help:
@@ -198,14 +252,20 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... wedit-server"
-	@echo "... wedit-app"
+	@echo "... wedit"
+	@echo "... wedit_lib"
 	@echo "... apps/app.o"
 	@echo "... apps/app.i"
 	@echo "... apps/app.s"
-	@echo "... apps/server.o"
-	@echo "... apps/server.i"
-	@echo "... apps/server.s"
+	@echo "... src/crdt.o"
+	@echo "... src/crdt.i"
+	@echo "... src/crdt.s"
+	@echo "... src/item.o"
+	@echo "... src/item.i"
+	@echo "... src/item.s"
+	@echo "... src/uid.o"
+	@echo "... src/uid.i"
+	@echo "... src/uid.s"
 .PHONY : help
 
 

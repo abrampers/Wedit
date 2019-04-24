@@ -4,7 +4,7 @@
 # compile CXX with /usr/local/Cellar/gcc/8.2.0/bin/g++-8
 CXX_FLAGS =  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk  
 
-CXX_DEFINES = -DBOOST_ERROR_CODE_HEADER_ONLY
+CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include 
+CXX_INCLUDES = -I"/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/include/wedit" 
 
