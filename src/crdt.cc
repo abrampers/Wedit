@@ -14,7 +14,7 @@ CRDT::CRDT()
 {}
 
 Item CRDT::LocalInsert(char value, uint32_t index) {
-    
+
 }
 
 Item CRDT::LocalDelete(uint32_t index) {
@@ -27,4 +27,15 @@ void CRDT::RemoteInsert(Item item) {
 
 void CRDT::RemoteDelete(Item item) {
 
+}
+
+vector<uint32_t> CRDT::GetGlobalIndex(uint32_t left, uint32_t right) {
+    left_gidx = this.item[left].global_index;
+    right_gidx = this.item[right].global_index;
+
+    if (left_gidx.size() < right_gidx.size()) {
+        
+    } else {
+
+    }
 }

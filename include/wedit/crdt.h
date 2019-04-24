@@ -22,6 +22,7 @@ class CRDT {
         Item LocalDelete(uint32_t index);
         void RemoteInsert(Item item);
         void RemoteDelete(Item item);
+        vector<uint32_t> GetGlobalIndex(uint32_t left, uint32_t right);
 };
 
 #endif  // WEDIT_CRDT_H_
