@@ -6,6 +6,38 @@
 
 #IncludeRegexTransform: 
 
+../include/wedit/Peer.h
+vector
+-
+utility
+-
+string
+-
+thread
+-
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+errno.h
+-
+unistd.h
+-
+arpa/inet.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+sys/time.h
+-
+netdb.h
+-
+
 ../include/wedit/crdt.h
 stdint.h
 -
@@ -34,6 +66,14 @@ stdint.h
 random
 -
 
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/wedit_lib_autogen/mocs_compilation.cpp
+
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/Peer.cc
+Peer.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/Peer.h
+iostream
+-
+
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.cc
 crdt.h
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.h
@@ -56,6 +96,8 @@ stdint.h
 iostream
 -
 sstream
+-
+cstring
 -
 
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/uid.cc
