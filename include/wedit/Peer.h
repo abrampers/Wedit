@@ -47,8 +47,8 @@ public:
     int Connect(std::string host, int port);
     void Send(std::string payload) const;
 
-    std::vector<std::pair<std::string, int> > getConnectedIP();
-    void test();
+    std::vector<std::pair<std::string, int> > GetConnectedIP();
+    void Test();
     CRDT crdt;
 };
 

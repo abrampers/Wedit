@@ -24,7 +24,7 @@ add_library(wedit_lib STATIC
     src/item.cc
     src/uid.cc
     src/utils.cc
-    src/Peer.cc
+    src/peer.cc
 )
 
 # Tell CMake to create the helloworld executable

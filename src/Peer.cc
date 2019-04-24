@@ -33,9 +33,9 @@ Peer::Peer(int port_number): port_number(port_number) {
     }
 
     // Connect to all connected peers
-    std::vector<std::pair<std::string, int> > connected_ip = getConnectedIP(); 
+    std::vector<std::pair<std::string, int> > connected_ip = GetConnectedIP(); 
     for(int i = 0; i < connected_ip.size(); i++) {
-        this->connect(connected_ip[i].first, connected_ip[i].second);
+        this->Connect(connected_ip[i].first, connected_ip[i].second);
     }
 
     // this->accept();
