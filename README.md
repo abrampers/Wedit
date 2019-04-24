@@ -31,10 +31,12 @@ Recently, there are many assignments those were givens by our professors. Unfort
 - [**Wedit Testing**](#wedit-testing)
 
 ### System Design and How It Works
-TBA
+Wedit is a peer-to-peer, real-time collaborative text editing applicaion. The two most important aspects of the app that we want to discuss here are the use of peer-to-peer connections and the use of CRDT to provide a conflic-free distributed representations of the text editor.
+
+We designed Wedit to be distributed via peer-to-peer connections from the start. We consider this an advantage since a peer-to-peer connection guarantees a shortest-path distance between each users hence a more real-time experience. But, this design poses another challenge. Since our database is distributed, how do we ensure that each user's database are synced with the other users'. This is where Conflict-free Replicated Data Type (CRDT) comes in. This data type provides us with the two properties that we need to ensure a consistent database which are commutativity and idempotency.
 
 ### More Details About Wedit
-TBA
+To develop Wedit, we decided to use C++. That is because we think that implementing a CRDT will be quite complex and running and maintaining a CRDT will be quite computationally expensive (if not done correctly). So, we decided that C++, with it's flexibility, rich STLs, and speed, is the right choice. To develop the GUI, we use Qt since it provides the most complete feature set and have a comprehensive documentation. This comes at a cost, however, since we ultimately need to implement the peer-to-peer connection by ourselves from scratch but we think it is a fair tradeoff.
 
 ### Self-Analysis Of Wedit
 TBA
