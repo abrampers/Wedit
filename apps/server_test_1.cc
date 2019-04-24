@@ -1,4 +1,4 @@
-#include "Peer.h"
+#include "peer.h"
 #include <iostream>
 #include <thread>
 

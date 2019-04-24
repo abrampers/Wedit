@@ -1,4 +1,4 @@
-#include "Peer.h"
+#include "peer.h"
 #include <iostream>
 
 void error(const char *msg) {
@@ -6,8 +6,8 @@ void error(const char *msg) {
     exit(0);
 }
 
-Peer::Peer(int portNumber): portNumber(portNumber) {    
-    if( (serverSocketID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
+Peer::Peer(int port_number): port_number(port_number) {    
+    if( (server_socket_ID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
         puts("Peer::Peer: failed to create socket");
         // perror("socket failed");   
         // exit(EXIT_FAILURE);   
@@ -16,17 +16,17 @@ Peer::Peer(int portNumber): portNumber(portNumber) {
     struct sockaddr_in address;
     address.sin_family = AF_INET;   
     address.sin_addr.s_addr = INADDR_ANY;   
-    address.sin_port = htons( portNumber );
+    address.sin_port = htons(port_number);
 
-    if (::bind(serverSocketID, (struct sockaddr *) &address, sizeof(address)) < 0)   
+    if (::bind(server_socket_ID, (struct sockaddr *) &address, sizeof(address)) < 0)   
     {   
         puts("Peer::Peer: failed to bind");
         // perror("bind failed");   
         // exit(EXIT_FAILURE);   
     }   
-    printf("Listener on port %d \n", portNumber);
+    printf("Listener on port %d \n", port_number);
 
-    if (::listen(serverSocketID, MAX_PENDING) < 0)    {
+    if (::listen(server_socket_ID, MAX_PENDING) < 0)    {
         puts("Peer::Peer: failed to listen");
         // perror("listen");   
         // exit(EXIT_FAILURE);   
@@ -39,11 +39,11 @@ Peer::Peer(int portNumber): portNumber(portNumber) {
     }
 
     // this->accept();
-    serverThread = std::thread(&Peer::accept, std::ref(*this));
+    server_thread = std::thread(&Peer::accept, std::ref(*this));
 }
 
 Peer::~Peer() {
-    serverThread.join();
+    server_thread.join();
     this->leave();
 }
 
@@ -54,7 +54,7 @@ void Peer::accept() {
     struct sockaddr_in address;
     address.sin_family = AF_INET;   
     address.sin_addr.s_addr = INADDR_ANY;   
-    address.sin_port = htons( portNumber );
+    address.sin_port = htons( port_number );
 
     //accept the incoming connection  
     puts("Waiting for connections ...");
@@ -64,13 +64,13 @@ void Peer::accept() {
         FD_ZERO(&readfds);   
      
         //add master socket to set  
-        FD_SET(serverSocketID, &readfds);   
-        max_sd = serverSocketID;   
+        FD_SET(server_socket_ID, &readfds);   
+        max_sd = server_socket_ID;   
              
         //add child sockets to set  
-        for ( i = 0 ; i < clientSockIDs.size() ; i++) {   
+        for ( i = 0 ; i < client_sock_IDs.size() ; i++) {   
             //socket descriptor  
-            sd = clientSockIDs[i];   
+            sd = client_sock_IDs[i];   
                  
             //if valid socket descriptor then add to read list  
             if(sd > 0)   
@@ -91,8 +91,8 @@ void Peer::accept() {
              
         //If something happened on the master socket ,  
         //then its an incoming connection  
-        if (FD_ISSET(serverSocketID, &readfds)) { 
-            if ((new_socket = ::accept(serverSocketID, (struct sockaddr *) &address, (socklen_t*) &addrlen)) < 0) {   
+        if (FD_ISSET(server_socket_ID, &readfds)) { 
+            if ((new_socket = ::accept(server_socket_ID, (struct sockaddr *) &address, (socklen_t*) &addrlen)) < 0) {   
                 puts("Peer::accept: failed to accept incoming connection");
                 return;
                 // perror("accept");   
@@ -113,14 +113,14 @@ void Peer::accept() {
                  
             puts("Welcome message sent successfully"); 
 
-            clientSockIDs.push_back(new_socket);  
-            printf("Adding to list of sockets as %lu\n" , clientSockIDs.size() - 1);
+            client_sock_IDs.push_back(new_socket);  
+            printf("Adding to list of sockets as %lu\n" , client_sock_IDs.size() - 1);
                  
         }   
              
         //else its some IO operation on some other socket 
-        for (i = 0; i < clientSockIDs.size(); i++) {
-            sd = clientSockIDs[i];   
+        for (i = 0; i < client_sock_IDs.size(); i++) {
+            sd = client_sock_IDs[i];   
                  
             if (FD_ISSET( sd , &readfds)) {
                 //Check if it was for closing , and also read the  
@@ -132,7 +132,7 @@ void Peer::accept() {
                          
                     //Close the socket and mark as 0 in list for reuse  
                     close( sd );   
-                    clientSockIDs.erase(clientSockIDs.begin() + i); 
+                    client_sock_IDs.erase(client_sock_IDs.begin() + i); 
                 } else { 
                     //set the string terminating NULL byte on the end  
                     //of the data read  
@@ -147,21 +147,21 @@ void Peer::accept() {
     }
 }
 
-void Peer::send(std::string payload) const {
-    for (auto& sd: clientSockIDs) {
+void Peer::Send(std::string payload) const {
+    for (auto& sd: client_sock_IDs) {
         if( ::send(sd, payload.c_str(), strlen(payload.c_str()), 0) != strlen(payload.c_str())) {
             perror("send");   
         }  
     }
 }
 
-int Peer::connect(std::string host, int port) {
+int Peer::Connect(std::string host, int port) {
     int clientSockID;
     struct sockaddr_in address;
     struct hostent *server;
 
     if( (clientSockID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
-        puts("Peer::connect: failed to create socket");
+        puts("Peer::Connect: failed to create socket");
         // perror("socket failed");   
         // exit(EXIT_FAILURE);  
         return -1; 
@@ -176,20 +176,20 @@ int Peer::connect(std::string host, int port) {
     address.sin_port = htons(port);
 
     if( (::connect(clientSockID , (struct sockaddr *) &address, sizeof(address))) < 0) {   
-        puts("Peer::connect: failed to connect");
+        puts("Peer::Connect: failed to connect");
         // perror("connect failed");   
         // exit(EXIT_FAILURE);   
         return -1;
     }
 
-    clientSockIDs.push_back(clientSockID);
+    client_sock_IDs.push_back(clientSockID);
 
     printf("Connected to host %s:%d\n", host.c_str(), port);
 
     return 0;
 }
 
-std::vector<std::pair<std::string, int> > Peer::getConnectedIP() {
+std::vector<std::pair<std::string, int> > Peer::GetConnectedIP() {
     std::vector<std::pair<std::string, int> > res;
     char *test = (char*) malloc(1024);
     int sockfd, portno, n;
@@ -215,7 +215,7 @@ std::vector<std::pair<std::string, int> > Peer::getConnectedIP() {
     if (::connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
     printf("Please enter the message: ");
-    payload = std::make_pair(0, portNumber);
+    payload = std::make_pair(0, port_number);
     n = write(sockfd, &payload, sizeof(std::pair<int, int>));
     if (n < 0) 
          error("ERROR writing to socket");
@@ -274,7 +274,7 @@ void Peer::leave() {
     serv_addr.sin_port = htons(portno);
     if (::connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
-    payload = std::make_pair(-1, portNumber);
+    payload = std::make_pair(-1, port_number);
     n = write(sockfd, &payload, sizeof(std::pair<int, int>));
     if (n < 0) 
          error("ERROR writing to socket");
@@ -282,7 +282,7 @@ void Peer::leave() {
     close(sockfd);
 }
 
-void Peer::test() {
+void Peer::Test() {
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
