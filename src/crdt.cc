@@ -116,6 +116,10 @@ bool CRDT::GetStrategyAtDepth(uint32_t depth) {
 void CRDT::PrintItems() {
     for (int i = 0; i < this->items.size(); i ++) {
         this->items[i].Print();
-        cout << endl;
+        // char *data = (char*) malloc(1024);
+        // data = this->items[i].Serialize(true);
+        // Item new_item = Item(data);
+        // cout << new_item.uid.site_id << "," << new_item.value << "," << new_item.uid.site_counter << "," << new_item.uid.global_index.size();
+        // cout << endl;
     }
 }

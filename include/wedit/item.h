@@ -9,8 +9,10 @@ struct Item {
     UID uid;
     char value;
 
+    Item(char* data);
     Item(UID uid, char value);
     void Print();
+    char* Serialize(bool action);
 };
 
 #endif  // WEDIT_ITEM_H_
