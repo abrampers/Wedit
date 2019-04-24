@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <algorithm>
 #include "utils.h"
 
 using namespace std;
@@ -31,17 +32,19 @@ Item CRDT::LocalDelete(uint32_t index) {
 }
 
 void CRDT::RemoteInsert(Item item) {
-
+    uint32_t index = this->FindInsertIndex(item);
+    if (index != UINT32_MAX) this->items.insert(this->items.begin() + index, item); // Item doesn't exist
 }
 
 void CRDT::RemoteDelete(Item item) {
-
+    uint32_t index = this->FindIndex(item);
+    if (index != UINT32_MAX) this->items.erase(this->items.begin() + index); // Item already exists
 }
 
 vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
     // First item
     if (this->items.size() == 0) {
-        vector<uint32_t> new_gidx{0};
+        vector<uint32_t> new_gidx{1};
         return new_gidx;
     }
 
@@ -55,37 +58,45 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
     uint32_t right_depth = right_gidx.size();
 
     vector<uint32_t> new_gidx; 
-    uint32_t min, max, depth;
+    uint32_t min, max, depth, base;
     bool strategy_add;
     bool depth_added = false;
 
+    // Determine range boundaries
     if (left_depth < right_depth) {
-        min = 0;
-        max = right_gidx[right_depth - 1];
         depth = right_depth;
+        base = pow(2, depth + 4);
+        min = 1;
+        max = right_gidx[right_depth - 1];
         new_gidx = right_gidx;
     } else if (left_depth > right_depth) {
-        min = left_gidx[left_depth - 1] + 1;
-        max = pow(2, left_depth + 4);
         depth = left_depth;
+        base = pow(2, depth + 4);
+        min = left_gidx[left_depth - 1] + 1;
+        max = base - 1;
         new_gidx = left_gidx;
     } else {
+        depth = left_depth;
+        base = pow(2, depth + 4);
         min = left_gidx[left_depth - 1] + 1;
         max = right_gidx[right_depth - 1];
-        depth = left_depth;
         new_gidx = left_gidx;
     }
 
     // Allocate new depth
-    if (max - min < 1) {
+    if (min == max) {
+        if (min == 1) {
+            new_gidx[new_gidx.size() - 1] = 0;
+        } else if (max == base - 1) {
+            new_gidx[new_gidx.size() - 1] = base - 1;
+        }
         depth ++;
-        min = 0;
-        max = pow(2, depth + 4);
+        min = 1;
+        max = pow(2, depth + 4) - 1;
         depth_added = true;
     }
 
     strategy_add = this->GetStrategyAtDepth(depth);
-
     if (max - min > 10) {
         if (strategy_add) {
             max = min + 10;
@@ -113,9 +124,20 @@ bool CRDT::GetStrategyAtDepth(uint32_t depth) {
     }
 }
 
+uint32_t CRDT::FindIndex(Item item) {
+    vector<Item>::iterator iter = lower_bound(this->items.begin(), this->items.end(), item);
+    if (*iter == item) return ((uint32_t) (iter - this->items.begin()));
+    else return UINT32_MAX; // Item doesn't exist
+}
+
+uint32_t CRDT::FindInsertIndex(Item item) {
+    vector<Item>::iterator iter = lower_bound(this->items.begin(), this->items.end(), item);
+    if (!(*iter == item)) return ((uint32_t) (iter - this->items.begin()));
+    else return UINT32_MAX; // Item already exists
+}
+
 void CRDT::PrintItems() {
-    for (int i = 0; i < this->items.size(); i ++) {
-        this->items[i].Print();
-        cout << endl;
+    for (uint32_t i = 0; i < this->items.size(); i ++) {
+        cout << this->items[i].ToString() << endl;
     }
 }
