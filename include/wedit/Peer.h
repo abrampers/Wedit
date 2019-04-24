@@ -35,7 +35,6 @@ private:
     int max_sd;
     std::thread serverThread;
 
-    CRDT crdt;
 
     /* Method */
     void accept();
@@ -50,6 +49,7 @@ public:
 
     std::vector<std::pair<std::string, int> > getConnectedIP();
     void test();
+    CRDT crdt;
 };
 
 #endif

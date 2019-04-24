@@ -177,8 +177,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>textEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>textDidChange()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>388</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>printPosition()</slot>
+  <slot>textDidChange()</slot>
  </slots>
 </ui>

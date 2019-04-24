@@ -5,12 +5,11 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    peer(5000)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
-    connect( ui->textEdit->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(onDocumentChange(int,int,int)));
+    // connect( ui->textEdit->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(change(int,int,int)));
 }
 
 MainWindow::~MainWindow()
@@ -87,7 +86,7 @@ void MainWindow::on_actionRedo_triggered()
 }
 
 void MainWindow::printPosition() {
-    // std::cout << ui->textEdit->textCursor().position() << std::endl;
+    std::cout << ui->textEdit->textCursor().position() << std::endl;
 }
 
 void MainWindow::on_actioncursortop_triggered()
@@ -100,17 +99,20 @@ void MainWindow::on_actioncursortop_triggered()
     ui->textEdit->setTextCursor(c);
 }
 
-void MainWindow::onDocumentChange(int pos, int del, int add) {
-    // std::cout << pos << " " << del << " " << add << std::endl;
-    if (del == 0) {
-        QString added = ui->textEdit->toPlainText().mid(pos,add);
-        std::cout << added.toUtf8().constData() << std::endl;
-        Item item = peer.crdt.LocalInsert(added[0], pos);
-        std::cout << item.ToString() << std::endl;
-    } else {
-        Item item = peer.crdt.LocalDelete(pos);
-        std::cout << item.ToString() << std::endl;
-    }
-    // item = peer.crdt.localinsert atau delete;
-    // kirim item
+void MainWindow::textDidChange() {
+
+}
+
+void MainWindow::change(int pos, int del, int add) {
+    std::cout << pos << " " << del << " " << add << std::endl;
+//    if (del == 0) {
+//        std::cout << "ewe" << std::endl;
+//        QString added = ui->textEdit->toPlainText().mid(pos,add);
+//        std::cout << added.toStdString() << std::endl;
+//        Item item = peer.crdt.LocalInsert(added.toStdString()[0], pos);
+//        std::cout << item.ToString() << std::endl;
+//    } else {
+//        Item item = peer.crdt.LocalDelete(pos);
+//        std::cout << item.ToString() << std::endl;
+//    }
 }
