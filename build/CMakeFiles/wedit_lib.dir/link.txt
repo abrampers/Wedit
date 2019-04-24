@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libwedit_lib.a  CMakeFiles/wedit_lib.dir/src/crdt.cc.o CMakeFiles/wedit_lib.dir/src/item.cc.o CMakeFiles/wedit_lib.dir/src/uid.cc.o CMakeFiles/wedit_lib.dir/src/utils.cc.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libwedit_lib.a

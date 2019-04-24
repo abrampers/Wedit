@@ -1,0 +1,60 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/wedit/crdt.h
+stdint.h
+-
+vector
+-
+unordered_map
+-
+item.h
+../include/wedit/item.h
+
+../include/wedit/item.h
+uid.h
+../include/wedit/uid.h
+
+../include/wedit/uid.h
+stdint.h
+-
+vector
+-
+
+../include/wedit/utils.h
+stdint.h
+-
+random
+-
+
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.cc
+crdt.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.h
+iostream
+-
+cmath
+-
+cstdlib
+-
+utils.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.h
+
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/item.cc
+item.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/item.h
+iostream
+-
+
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/uid.cc
+uid.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/uid.h
+
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.cc
+utils.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.h
+

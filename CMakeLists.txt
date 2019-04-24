@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 3.0.0)
+set (CMAKE_CXX_STANDARD 11)
 project(wedit)
 
-target_include_directories(wedit "include/")
+include_directories(include/wedit)
 
-set(SOURCES file.cpp file2.cpp ${YOUR_DIRECTORY}/file1.h ${YOUR_DIRECTORY}/file2.h)
+add_library(wedit_lib STATIC
+    src/crdt.cc
+    src/item.cc
+    src/uid.cc
+    src/utils.cc
+)
 
-add_executable(test ${SOURCES})
-
-add_executable(wedit-app apps/app.cc)
-add_executable(wedit-server apps/server.cc)
-
-target_link_libraries(wedit-app ${Boost_LIBRARIES})
-target_link_libraries(wedit-server ${Boost_LIBRARIES})
+add_executable(wedit apps/app.cc)
+target_link_libraries(
+    wedit
+    wedit_lib
+)

@@ -60,76 +60,76 @@ CMAKE_SOURCE_DIR = "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit
 CMAKE_BINARY_DIR = "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build"
 
 #=============================================================================
-# Target rules for target CMakeFiles/wedit-server.dir
+# Target rules for target CMakeFiles/wedit.dir
 
 # All Build rule for target.
-CMakeFiles/wedit-server.dir/all:
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/depend
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=3,4 "Built target wedit-server"
-.PHONY : CMakeFiles/wedit-server.dir/all
+CMakeFiles/wedit.dir/all: CMakeFiles/wedit_lib.dir/all
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/depend
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=1,2 "Built target wedit"
+.PHONY : CMakeFiles/wedit.dir/all
 
 # Include target in all.
-all: CMakeFiles/wedit-server.dir/all
+all: CMakeFiles/wedit.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/wedit-server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/wedit-server.dir/all
+CMakeFiles/wedit.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" 7
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/wedit.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" 0
-.PHONY : CMakeFiles/wedit-server.dir/rule
+.PHONY : CMakeFiles/wedit.dir/rule
 
 # Convenience name for target.
-wedit-server: CMakeFiles/wedit-server.dir/rule
+wedit: CMakeFiles/wedit.dir/rule
 
-.PHONY : wedit-server
-
-# clean rule for target.
-CMakeFiles/wedit-server.dir/clean:
-	$(MAKE) -f CMakeFiles/wedit-server.dir/build.make CMakeFiles/wedit-server.dir/clean
-.PHONY : CMakeFiles/wedit-server.dir/clean
+.PHONY : wedit
 
 # clean rule for target.
-clean: CMakeFiles/wedit-server.dir/clean
+CMakeFiles/wedit.dir/clean:
+	$(MAKE) -f CMakeFiles/wedit.dir/build.make CMakeFiles/wedit.dir/clean
+.PHONY : CMakeFiles/wedit.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/wedit.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/wedit-app.dir
+# Target rules for target CMakeFiles/wedit_lib.dir
 
 # All Build rule for target.
-CMakeFiles/wedit-app.dir/all:
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/depend
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=1,2 "Built target wedit-app"
-.PHONY : CMakeFiles/wedit-app.dir/all
+CMakeFiles/wedit_lib.dir/all:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/depend
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=3,4,5,6,7 "Built target wedit_lib"
+.PHONY : CMakeFiles/wedit_lib.dir/all
 
 # Include target in all.
-all: CMakeFiles/wedit-app.dir/all
+all: CMakeFiles/wedit_lib.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/wedit-app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/wedit-app.dir/all
+CMakeFiles/wedit_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/wedit_lib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" 0
-.PHONY : CMakeFiles/wedit-app.dir/rule
+.PHONY : CMakeFiles/wedit_lib.dir/rule
 
 # Convenience name for target.
-wedit-app: CMakeFiles/wedit-app.dir/rule
+wedit_lib: CMakeFiles/wedit_lib.dir/rule
 
-.PHONY : wedit-app
-
-# clean rule for target.
-CMakeFiles/wedit-app.dir/clean:
-	$(MAKE) -f CMakeFiles/wedit-app.dir/build.make CMakeFiles/wedit-app.dir/clean
-.PHONY : CMakeFiles/wedit-app.dir/clean
+.PHONY : wedit_lib
 
 # clean rule for target.
-clean: CMakeFiles/wedit-app.dir/clean
+CMakeFiles/wedit_lib.dir/clean:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/clean
+.PHONY : CMakeFiles/wedit_lib.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/wedit_lib.dir/clean
 
 .PHONY : clean
 
