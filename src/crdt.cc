@@ -45,8 +45,8 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
     vector<uint32_t> left_gidx;
     vector<uint32_t> right_gidx;
 
-    if (index > 0) this->items[index - 1].uid.global_index;
-    if (index < this->items.size() - 1) this->items[index].uid.global_index;
+    if (index > 0) left_gidx = this->items[index - 1].uid.global_index;
+    if (index < this->items.size() - 1) right_gidx = this->items[index].uid.global_index;
 
     uint32_t left_depth = left_gidx.size();
     uint32_t right_depth = right_gidx.size();
@@ -61,9 +61,9 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
         max = right_gidx[right_depth - 1];
         depth = right_depth;
         new_gidx = right_gidx;
-    } else if (right_depth < left_depth) {
+    } else if (left_depth > right_depth) {
         min = left_gidx[left_depth - 1];
-        max = pow(2, left_depth + 2);
+        max = pow(2, left_depth + 4);
         depth = left_depth;
         new_gidx = left_gidx;
     } else {
@@ -74,12 +74,14 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
     }
 
     // Allocate new depth
-    if (max - min == 1) {
+    if (max - min < 2) {
         depth ++;
         min = 0;
-        max = pow(2, depth + 2);
+        max = pow(2, depth + 4);
         depth_added = true;
     }
+
+    strategy_add = this->GetStrategyAtDepth(depth);
 
     if (max - min > 10) {
         if (strategy_add) {
