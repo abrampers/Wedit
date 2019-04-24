@@ -129,11 +129,36 @@ CMakeFiles/wedit_lib.dir/src/uid.cc.o.provides: CMakeFiles/wedit_lib.dir/src/uid
 CMakeFiles/wedit_lib.dir/src/uid.cc.o.provides.build: CMakeFiles/wedit_lib.dir/src/uid.cc.o
 
 
+CMakeFiles/wedit_lib.dir/src/utils.cc.o: CMakeFiles/wedit_lib.dir/flags.make
+CMakeFiles/wedit_lib.dir/src/utils.cc.o: ../src/utils.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/wedit_lib.dir/src/utils.cc.o"
+	/usr/local/Cellar/gcc/8.2.0/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/wedit_lib.dir/src/utils.cc.o -c "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.cc"
+
+CMakeFiles/wedit_lib.dir/src/utils.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wedit_lib.dir/src/utils.cc.i"
+	/usr/local/Cellar/gcc/8.2.0/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.cc" > CMakeFiles/wedit_lib.dir/src/utils.cc.i
+
+CMakeFiles/wedit_lib.dir/src/utils.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wedit_lib.dir/src/utils.cc.s"
+	/usr/local/Cellar/gcc/8.2.0/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.cc" -o CMakeFiles/wedit_lib.dir/src/utils.cc.s
+
+CMakeFiles/wedit_lib.dir/src/utils.cc.o.requires:
+
+.PHONY : CMakeFiles/wedit_lib.dir/src/utils.cc.o.requires
+
+CMakeFiles/wedit_lib.dir/src/utils.cc.o.provides: CMakeFiles/wedit_lib.dir/src/utils.cc.o.requires
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/utils.cc.o.provides.build
+.PHONY : CMakeFiles/wedit_lib.dir/src/utils.cc.o.provides
+
+CMakeFiles/wedit_lib.dir/src/utils.cc.o.provides.build: CMakeFiles/wedit_lib.dir/src/utils.cc.o
+
+
 # Object files for target wedit_lib
 wedit_lib_OBJECTS = \
 "CMakeFiles/wedit_lib.dir/src/crdt.cc.o" \
 "CMakeFiles/wedit_lib.dir/src/item.cc.o" \
-"CMakeFiles/wedit_lib.dir/src/uid.cc.o"
+"CMakeFiles/wedit_lib.dir/src/uid.cc.o" \
+"CMakeFiles/wedit_lib.dir/src/utils.cc.o"
 
 # External object files for target wedit_lib
 wedit_lib_EXTERNAL_OBJECTS =
@@ -141,9 +166,10 @@ wedit_lib_EXTERNAL_OBJECTS =
 libwedit_lib.a: CMakeFiles/wedit_lib.dir/src/crdt.cc.o
 libwedit_lib.a: CMakeFiles/wedit_lib.dir/src/item.cc.o
 libwedit_lib.a: CMakeFiles/wedit_lib.dir/src/uid.cc.o
+libwedit_lib.a: CMakeFiles/wedit_lib.dir/src/utils.cc.o
 libwedit_lib.a: CMakeFiles/wedit_lib.dir/build.make
 libwedit_lib.a: CMakeFiles/wedit_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libwedit_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libwedit_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/wedit_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wedit_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -155,6 +181,7 @@ CMakeFiles/wedit_lib.dir/build: libwedit_lib.a
 CMakeFiles/wedit_lib.dir/requires: CMakeFiles/wedit_lib.dir/src/crdt.cc.o.requires
 CMakeFiles/wedit_lib.dir/requires: CMakeFiles/wedit_lib.dir/src/item.cc.o.requires
 CMakeFiles/wedit_lib.dir/requires: CMakeFiles/wedit_lib.dir/src/uid.cc.o.requires
+CMakeFiles/wedit_lib.dir/requires: CMakeFiles/wedit_lib.dir/src/utils.cc.o.requires
 
 .PHONY : CMakeFiles/wedit_lib.dir/requires
 

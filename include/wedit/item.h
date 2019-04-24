@@ -10,6 +10,7 @@ struct Item {
     char value;
 
     Item(UID uid, char value);
+    void Print();
 };
 
 #endif  // WEDIT_ITEM_H_

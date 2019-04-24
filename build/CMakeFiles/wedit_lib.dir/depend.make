@@ -4,6 +4,7 @@
 CMakeFiles/wedit_lib.dir/src/crdt.cc.o: ../include/wedit/crdt.h
 CMakeFiles/wedit_lib.dir/src/crdt.cc.o: ../include/wedit/item.h
 CMakeFiles/wedit_lib.dir/src/crdt.cc.o: ../include/wedit/uid.h
+CMakeFiles/wedit_lib.dir/src/crdt.cc.o: ../include/wedit/utils.h
 CMakeFiles/wedit_lib.dir/src/crdt.cc.o: ../src/crdt.cc
 
 CMakeFiles/wedit_lib.dir/src/item.cc.o: ../include/wedit/item.h
@@ -12,4 +13,7 @@ CMakeFiles/wedit_lib.dir/src/item.cc.o: ../src/item.cc
 
 CMakeFiles/wedit_lib.dir/src/uid.cc.o: ../include/wedit/uid.h
 CMakeFiles/wedit_lib.dir/src/uid.cc.o: ../src/uid.cc
+
+CMakeFiles/wedit_lib.dir/src/utils.cc.o: ../include/wedit/utils.h
+CMakeFiles/wedit_lib.dir/src/utils.cc.o: ../src/utils.cc
 

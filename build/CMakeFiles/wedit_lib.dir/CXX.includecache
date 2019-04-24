@@ -26,6 +26,12 @@ stdint.h
 vector
 -
 
+../include/wedit/utils.h
+stdint.h
+-
+random
+-
+
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.cc
 crdt.h
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.h
@@ -35,12 +41,20 @@ cmath
 -
 cstdlib
 -
+utils.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.h
 
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/item.cc
 item.h
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/item.h
+iostream
+-
 
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/uid.cc
 uid.h
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/uid.h
+
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.cc
+utils.h
+/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/utils.h
 

@@ -4,10 +4,11 @@ project(wedit)
 
 include_directories(include/wedit)
 
-add_library(wedit_lib STATIC 
+add_library(wedit_lib STATIC
     src/crdt.cc
     src/item.cc
     src/uid.cc
+    src/utils.cc
 )
 
 add_executable(wedit apps/app.cc)

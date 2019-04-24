@@ -244,6 +244,33 @@ src/uid.cc.s:
 	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/uid.cc.s
 .PHONY : src/uid.cc.s
 
+src/utils.o: src/utils.cc.o
+
+.PHONY : src/utils.o
+
+# target to build an object file
+src/utils.cc.o:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/utils.cc.o
+.PHONY : src/utils.cc.o
+
+src/utils.i: src/utils.cc.i
+
+.PHONY : src/utils.i
+
+# target to preprocess a source file
+src/utils.cc.i:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/utils.cc.i
+.PHONY : src/utils.cc.i
+
+src/utils.s: src/utils.cc.s
+
+.PHONY : src/utils.s
+
+# target to generate assembly for a file
+src/utils.cc.s:
+	$(MAKE) -f CMakeFiles/wedit_lib.dir/build.make CMakeFiles/wedit_lib.dir/src/utils.cc.s
+.PHONY : src/utils.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -266,6 +293,9 @@ help:
 	@echo "... src/uid.o"
 	@echo "... src/uid.i"
 	@echo "... src/uid.s"
+	@echo "... src/utils.o"
+	@echo "... src/utils.i"
+	@echo "... src/utils.s"
 .PHONY : help
 
 

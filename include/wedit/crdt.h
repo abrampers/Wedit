@@ -15,10 +15,10 @@ class CRDT {
         unordered_map<uint32_t, bool> strategies;
 
 	public:
-        const uint8_t site_id;
+        const uint32_t site_id;
         uint8_t site_counter;
 
-        static uint8_t GenerateSiteID();
+        static uint32_t GenerateSiteID();
 		CRDT();
         Item LocalInsert(char value, uint32_t index);
         Item LocalDelete(uint32_t index);

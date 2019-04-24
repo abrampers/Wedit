@@ -3,11 +3,12 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include "utils.h"
 
 using namespace std;
 
-uint8_t CRDT::GenerateSiteID() {
-    return (uint8_t) rand();
+uint32_t CRDT::GenerateSiteID() {
+    return GenerateRandomInt(1, 10000);
 }
 		
 CRDT::CRDT() 
@@ -48,7 +49,7 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
     vector<uint32_t> right_gidx;
 
     if (index > 0) left_gidx = this->items[index - 1].uid.global_index;
-    if (index < this->items.size() - 1) right_gidx = this->items[index].uid.global_index;
+    if (index < this->items.size()) right_gidx = this->items[index].uid.global_index;
 
     uint32_t left_depth = left_gidx.size();
     uint32_t right_depth = right_gidx.size();
@@ -64,19 +65,19 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
         depth = right_depth;
         new_gidx = right_gidx;
     } else if (left_depth > right_depth) {
-        min = left_gidx[left_depth - 1];
+        min = left_gidx[left_depth - 1] + 1;
         max = pow(2, left_depth + 4);
         depth = left_depth;
         new_gidx = left_gidx;
     } else {
-        min = left_gidx[left_depth - 1];
+        min = left_gidx[left_depth - 1] + 1;
         max = right_gidx[right_depth - 1];
         depth = left_depth;
         new_gidx = left_gidx;
     }
 
     // Allocate new depth
-    if (max - min < 2) {
+    if (max - min < 1) {
         depth ++;
         min = 0;
         max = pow(2, depth + 4);
@@ -93,18 +94,18 @@ vector<uint32_t> CRDT::GetGlobalIndex(uint32_t index) {
         }
     }
 
-    uint32_t last_idx = (rand() % (max - min)) + min;
+    uint32_t last_idx = GenerateRandomInt(min, max - 1);
     if (depth_added) {
         new_gidx.push_back(last_idx);
     } else {
-        *new_gidx.end() = last_idx;
+        new_gidx[new_gidx.size() - 1] = last_idx;
     }
     return new_gidx;
 }
 
 bool CRDT::GetStrategyAtDepth(uint32_t depth) {
     if (this->strategies.find(depth) == this->strategies.end()) {
-        bool strategy = rand() % 2 > 0;
+        bool strategy = GenerateRandomInt(0, 99) < 50;
         this->strategies[depth] = strategy;
         return strategy;
     } else {
@@ -114,6 +115,7 @@ bool CRDT::GetStrategyAtDepth(uint32_t depth) {
 
 void CRDT::PrintItems() {
     for (int i = 0; i < this->items.size(); i ++) {
-        cout << this->items[i].value << " " << endl;
+        this->items[i].Print();
+        cout << endl;
     }
 }
