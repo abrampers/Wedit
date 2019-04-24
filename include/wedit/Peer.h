@@ -20,6 +20,8 @@
 
 #include "crdt.h"
 
+class MainWindow;
+
 const int MAX_PENDING = 10;
 
 const std::string SERVER_HOST = "0.0.0.0";
@@ -27,21 +29,21 @@ const int SERVER_PORT = 5000;
 
 class Peer {
 private:
-    /* data */
     int port_number;
     int server_socket_ID;
     std::vector<int> client_sock_IDs;
     fd_set readfds;
     int max_sd;
     std::thread server_thread;
+    MainWindow *w;
 
-
-    /* Method */
     void accept();
     void leave();
 
 public:
-    Peer(int port_number);
+    CRDT crdt;
+
+    Peer(int port_number, MainWindow *w);
     ~Peer();
 
     int Connect(std::string host, int port);
@@ -49,7 +51,6 @@ public:
 
     std::vector<std::pair<std::string, int> > GetConnectedIP();
     void Test();
-    CRDT crdt;
 };
 
 #endif

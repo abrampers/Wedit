@@ -1,4 +1,5 @@
 #include "peer.h"
+#include "mainwindow.h"
 #include <iostream>
 
 void error(const char *msg) {
@@ -6,7 +7,7 @@ void error(const char *msg) {
     exit(0);
 }
 
-Peer::Peer(int port_number): port_number(port_number) {    
+Peer::Peer(int port_number, MainWindow *w): port_number(port_number), w(w) {    
     if( (server_socket_ID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
         puts("Peer::Peer: failed to create socket");
         // perror("socket failed");   
@@ -138,6 +139,7 @@ void Peer::accept() {
                     //of the data read  
                     buffer[valread] = '\0'; 
                     // Handle every incoming message here;
+                    printf("%s\n", buffer);
 
                     // printf(buffer);
                     // ::send(sd , buffer , strlen(buffer) , 0 );   
@@ -149,6 +151,7 @@ void Peer::accept() {
 
 void Peer::Send(std::string payload) const {
     for (auto& sd: client_sock_IDs) {
+        puts("sending");
         if( ::send(sd, payload.c_str(), strlen(payload.c_str()), 0) != strlen(payload.c_str())) {
             perror("send");   
         }  

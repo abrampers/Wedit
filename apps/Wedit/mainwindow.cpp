@@ -3,13 +3,14 @@
 
 #include <iostream>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(int port, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    peer(port, this)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
-    // connect( ui->textEdit->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(change(int,int,int)));
+    connect( ui->textEdit->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(change(int,int,int)));
 }
 
 MainWindow::~MainWindow()
@@ -86,7 +87,7 @@ void MainWindow::on_actionRedo_triggered()
 }
 
 void MainWindow::printPosition() {
-    std::cout << ui->textEdit->textCursor().position() << std::endl;
+    // std::cout << ui->textEdit->textCursor().position() << std::endl;
 }
 
 void MainWindow::on_actioncursortop_triggered()
@@ -104,15 +105,14 @@ void MainWindow::textDidChange() {
 }
 
 void MainWindow::change(int pos, int del, int add) {
-    std::cout << pos << " " << del << " " << add << std::endl;
-//    if (del == 0) {
-//        std::cout << "ewe" << std::endl;
-//        QString added = ui->textEdit->toPlainText().mid(pos,add);
-//        std::cout << added.toStdString() << std::endl;
-//        Item item = peer.crdt.LocalInsert(added.toStdString()[0], pos);
-//        std::cout << item.ToString() << std::endl;
-//    } else {
-//        Item item = peer.crdt.LocalDelete(pos);
-//        std::cout << item.ToString() << std::endl;
-//    }
+    // std::cout << pos << " " << del << " " << add << std::endl;
+   if (del == 0) {
+       QString added = ui->textEdit->toPlainText().mid(pos,add);
+       std::cout << added.toStdString() << std::endl;
+       Item item = peer.crdt.LocalInsert(added.toStdString()[0], pos);
+       peer.Send(item.Serialize(true));
+   } else {
+       Item item = peer.crdt.LocalDelete(pos);
+       peer.Send(item.Serialize(false));
+   }
 }
