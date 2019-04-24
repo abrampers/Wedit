@@ -118,10 +118,6 @@ void MainWindow::change(int pos, int del, int add) {
    }
 }
 
-void MakeWindow::insert(char *data) {
-    std::cout<<"inserttot\n";
-}
-
-void MakeWindow::remove(char *data) {
-    std::cout<<"jembut\n";
+void MainWindow::setText(std::string s) {
+    ui->textEdit->setText(QString(s.c_str()));
 }

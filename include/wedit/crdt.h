@@ -32,9 +32,10 @@ class CRDT {
 		CRDT();
         Item LocalInsert(char value, uint32_t index);
         Item LocalDelete(uint32_t index);
-        void RemoteInsert(Item item);
-        void RemoteDelete(Item item);
+        void RemoteInsert(char *data);
+        void RemoteDelete(char *data);
         void PrintItems();
+        string GetString();
 };
 
 #endif  // WEDIT_CRDT_H_

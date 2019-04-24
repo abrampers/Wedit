@@ -31,14 +31,16 @@ Item CRDT::LocalDelete(uint32_t index) {
     return item;
 }
 
-void CRDT::RemoteInsert(Item item) {
+void CRDT::RemoteInsert(char *data) {
+    Item item(data);
     uint32_t index = this->FindInsertIndex(item);
     if (index != UINT32_MAX) this->items.insert(this->items.begin() + index, item); // Item doesn't exist
     this->IncrementPeerCounter(item.uid.site_id);
     this->ProcessRemoteDeletionBuffer();
 }
 
-void CRDT::RemoteDelete(Item item) {
+void CRDT::RemoteDelete(char *data) {
+    Item item(data);
     this->remote_deletion_buffer.push_back(item);
     this->IncrementPeerCounter(item.uid.site_id);
     this->ProcessRemoteDeletionBuffer();
@@ -166,4 +168,12 @@ void CRDT::ProcessRemoteDeletionBuffer() {
             this->remote_deletion_buffer.erase(this->remote_deletion_buffer.begin() + i);
         }
     }
+}
+
+string CRDT::GetString() {
+    string res = "";
+    for (uint32_t i = 0; i < this->items.size(); i ++) {
+        res += this->items[i].value;
+    }
+    return res;
 }

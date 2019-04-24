@@ -21,8 +21,7 @@ public:
     explicit MainWindow(int port, QWidget *parent = nullptr);
     ~MainWindow();
 
-    void insert(char *data);
-    void delete(char *data);
+    void setText(std::string s);
 
 private slots:
     void on_actionNew_triggered();

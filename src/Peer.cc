@@ -138,16 +138,20 @@ void Peer::accept() {
                     //set the string terminating NULL byte on the end  
                     //of the data read  
                     buffer[valread] = '\0';
-                    // printf("%d\n", valread);
+                    printf("%d\n", valread);
                     // Handle every incoming message here;
-                    printf("%s\n", buffer);
+                    printf("memew%s\n", buffer);
                     int action;
                     memcpy(&action, buffer, 1);
+                    puts("kento");
                     if(action == 0x1) {
-                        w->insert(buffer);
+                        crdt.RemoteInsert(buffer);
                     } else if(action == 0x2) {
-                        w->remove(buffer);
+                        crdt.RemoteDelete(buffer);
                     }
+
+                    std::string new_str = crdt.GetString();
+                    w->setText(new_str);
 
                     // printf(buffer);
                     // ::send(sd , buffer , strlen(buffer) , 0 );   
