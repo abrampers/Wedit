@@ -17,6 +17,8 @@ item.h
 ../include/wedit/item.h
 
 ../include/wedit/item.h
+string
+-
 uid.h
 ../include/wedit/uid.h
 

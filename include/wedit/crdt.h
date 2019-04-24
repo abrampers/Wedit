@@ -26,6 +26,8 @@ class CRDT {
         void RemoteDelete(Item item);
         vector<uint32_t> GetGlobalIndex(uint32_t index);
         bool GetStrategyAtDepth(uint32_t depth);
+        uint32_t FindIndex(Item item);
+        uint32_t FindInsertIndex(Item item);
         void PrintItems();
 };
 
