@@ -9,6 +9,7 @@ add_library(wedit_lib STATIC
     src/item.cc
     src/uid.cc
     src/utils.cc
+    src/Peer.cc
 )
 
 add_executable(wedit apps/app.cc)
@@ -16,3 +17,5 @@ target_link_libraries(
     wedit
     wedit_lib
 )
+
+add_executable(wedit_server apps/server.cc)

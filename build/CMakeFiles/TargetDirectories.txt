@@ -1,4 +1,0 @@
-/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles/rebuild_cache.dir
-/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles/edit_cache.dir
-/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles/wedit.dir
-/Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/build/CMakeFiles/wedit_lib.dir
