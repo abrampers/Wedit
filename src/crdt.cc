@@ -24,7 +24,9 @@ Item CRDT::LocalInsert(char value, uint32_t index) {
 }
 
 Item CRDT::LocalDelete(uint32_t index) {
-
+    Item item(this->items[index].uid, this->items[index].value);
+    this->items.erase(this->items.begin() + index);
+    return item;
 }
 
 void CRDT::RemoteInsert(Item item) {
