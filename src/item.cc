@@ -8,20 +8,19 @@
 using namespace std;
 
 Item::Item(char* data) {
-    bool action;
+    int action;
     char value;
     uint32_t site_id;
     uint32_t site_counter;
     uint32_t size;
     vector<uint32_t> global_index;
 
-    memcpy(&action, data, 1);
-    memcpy(&value, data + 1, 1);
-    memcpy(&site_id, data + 2, 4);
-    memcpy(&site_counter, data + 6, 4);
-    memcpy(&size, data + 10, 4);
-
-    int counter = 14;
+    memcpy(&action, data, 4);
+    memcpy(&value, data + 4, 1);
+    memcpy(&site_id, data + 5, 4);
+    memcpy(&site_counter, data + 9, 4);
+    memcpy(&size, data + 13, 4);
+    int counter = 17;
     for (int i = 0; i < size; i++) {
         uint32_t e;
         memcpy(&e, data + counter, 4);
@@ -29,6 +28,7 @@ Item::Item(char* data) {
         counter += 4;
     }
     this->value = value;
+    cout << site_id << ":" << site_counter << ":" << global_index.size() << endl;
     this->uid = UID(site_id, site_counter, global_index);
 }
 
@@ -40,14 +40,20 @@ Item::Item(UID uid, char value)
 
 
 bool Item::operator==(const Item& rhs) {
+    cout<<"zjcixzjcixzjc\n";
+    cout << this->uid.global_index.size() << "kentu asu\n";
+    cout << rhs.uid.global_index.size() << "jmbut asu\n";
     uint32_t left_size = this->uid.global_index.size();
     uint32_t right_size = rhs.uid.global_index.size();
+    cout << "memekzzz\n";
     if (left_size == right_size) {
         for (uint32_t i = 0; i < left_size; i ++) {
             if (this->uid.global_index[i] != rhs.uid.global_index[i]) return false;
         }
+        cout << "asokokokok\n";
         return ((this->uid.site_id == rhs.uid.site_id) && (this->uid.site_counter == rhs.uid.site_counter));
     } else {
+        cout << "jembaz\n";
         return false;
     }
 }
@@ -77,18 +83,21 @@ string Item::ToString() const {
 }
 
 char* Item::Serialize(bool action) {
-    char* data = (char*) malloc(1 + 1 + 4 + 4 + (this->uid.global_index.size() * 4));
+    char* data = (char*) malloc(4 + 1 + 4 + 4 + (this->uid.global_index.size() * 4));
+    char value = this->value;
     uint32_t site_id = this->uid.site_id;
     uint32_t site_counter = this->uid.site_counter;
     uint32_t global_index_size = this->uid.global_index.size();
-
-    data[0] = action ? 0x1 : 0x2;
-    data[1] = this->value;
-    memcpy(data + 2, &site_id, 4);
-    memcpy(data + 6, &site_counter, 4);
-    memcpy(data + 10, &global_index_size, 4);
+    uint32_t act = action ? 1 : 2;
+    // data[0] = action ? 0x1 : 0x2;
+    // data[1] = this->value;
+    memcpy(data, &act, 4);
+    memcpy(data + 4, &value, 1);
+    memcpy(data + 5, &site_id, 4);
+    memcpy(data + 9, &site_counter, 4);
+    memcpy(data + 13, &global_index_size, 4);
     
-    int counter = 14;
+    int counter = 17;
     for (auto e: this->uid.global_index) {
         memcpy(data + counter, &e, 4);
         counter += 4;        
