@@ -137,9 +137,17 @@ void Peer::accept() {
                 } else { 
                     //set the string terminating NULL byte on the end  
                     //of the data read  
-                    buffer[valread] = '\0'; 
+                    buffer[valread] = '\0';
+                    // printf("%d\n", valread);
                     // Handle every incoming message here;
                     printf("%s\n", buffer);
+                    int action;
+                    memcpy(&action, buffer, 1);
+                    if(action == 0x1) {
+                        w->insert(buffer);
+                    } else if(action == 0x2) {
+                        w->remove(buffer);
+                    }
 
                     // printf(buffer);
                     // ::send(sd , buffer , strlen(buffer) , 0 );   
@@ -152,7 +160,8 @@ void Peer::accept() {
 void Peer::Send(std::string payload) const {
     for (auto& sd: client_sock_IDs) {
         puts("sending");
-        if( ::send(sd, payload.c_str(), strlen(payload.c_str()), 0) != strlen(payload.c_str())) {
+        if( ::write(sd, payload.c_str(), strlen(payload.c_str())) != strlen(payload.c_str())) {
+            puts("error");
             perror("send");   
         }  
     }

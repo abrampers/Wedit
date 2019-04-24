@@ -82,7 +82,7 @@ char* Item::Serialize(bool action) {
     uint32_t site_counter = this->uid.site_counter;
     uint32_t global_index_size = this->uid.global_index.size();
 
-    data[0] = action ? 0x1 : 0x0;
+    data[0] = action ? 0x1 : 0x2;
     data[1] = this->value;
     memcpy(data + 2, &site_id, 4);
     memcpy(data + 6, &site_counter, 4);

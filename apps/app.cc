@@ -16,23 +16,25 @@ int main() {
     crdt.LocalInsert('q', 6);
     Item s = crdt.LocalInsert('s', 7);
 
-    // crdt.LocalDelete(0);
-    // crdt.LocalDelete(3);
-    // crdt.LocalDelete(5);
+    r = crdt.LocalDelete(0);
+    // Item c = crdt.LocalDelete(3);
+    // Item s = crdt.LocalDelete(5);
+
+    cout << r.ToString() << endl;
 
     // crdt.RemoteInsert(r);
     // crdt.RemoteInsert(c);
     // crdt.RemoteInsert(s);
 
-    crdt.RemoteDelete(r);
-    crdt.RemoteDelete(c);
-    crdt.RemoteDelete(s);
+    // crdt.RemoteDelete(r);
+    // crdt.RemoteDelete(c);
+    // crdt.RemoteDelete(s);
 
     // crdt.RemoteInsert(r);
     // crdt.RemoteInsert(c);
     // crdt.RemoteInsert(s);
 
-    crdt.PrintItems();
+    // crdt.PrintItems();
 
     return 0;
 }  

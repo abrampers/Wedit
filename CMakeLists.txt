@@ -43,17 +43,17 @@ target_link_libraries(
     Qt5::Widgets
 )
 
-add_executable(cdrt apps/app.cc 
-    src/crdt.cc
-    src/item.cc
-    src/uid.cc
-    src/utils.cc
-    src/peer.cc
-)
-target_link_libraries(
-    cdrt
-    Qt5::Widgets
-)
+# add_executable(cdrt apps/app.cc 
+#     src/crdt.cc
+#     src/item.cc
+#     src/uid.cc
+#     src/utils.cc
+#     src/peer.cc
+# )
+# target_link_libraries(
+#     cdrt
+#     Qt5::Widgets
+# )
 
 add_executable(wedit_server apps/server.cc)
 

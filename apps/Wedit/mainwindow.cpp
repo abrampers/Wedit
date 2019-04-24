@@ -112,7 +112,16 @@ void MainWindow::change(int pos, int del, int add) {
        Item item = peer.crdt.LocalInsert(added.toStdString()[0], pos);
        peer.Send(item.Serialize(true));
    } else {
+       std::cout << pos << "ewe" << std::endl;
        Item item = peer.crdt.LocalDelete(pos);
        peer.Send(item.Serialize(false));
    }
+}
+
+void MakeWindow::insert(char *data) {
+    std::cout<<"inserttot\n";
+}
+
+void MakeWindow::remove(char *data) {
+    std::cout<<"jembut\n";
 }
