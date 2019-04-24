@@ -11,6 +11,8 @@ stdint.h
 -
 vector
 -
+unordered_map
+-
 item.h
 ../include/wedit/item.h
 

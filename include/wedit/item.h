@@ -6,12 +6,10 @@
 using namespace std;
 
 struct Item {
-    private:
-        UID uid;
-        char value;
+    UID uid;
+    char value;
 
-	public:
-		Item(UID uid, char value);
+    Item(UID uid, char value);
 };
 
 #endif  // WEDIT_ITEM_H_

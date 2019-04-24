@@ -11,6 +11,8 @@ stdint.h
 -
 vector
 -
+unordered_map
+-
 item.h
 ../include/wedit/item.h
 
@@ -27,6 +29,10 @@ vector
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.cc
 crdt.h
 /Users/ffahleraz/Documents/ITB/Semester 6/Sister/tubes/wedit/src/crdt.h
+iostream
+-
+cmath
+-
 cstdlib
 -
 
