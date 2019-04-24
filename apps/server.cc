@@ -10,7 +10,32 @@
 #include <vector>
 #include <string>
 #include <arpa/inet.h>
+#include <iostream>
 const int PORT = 8080;
+
+char* serialize(std::vector<std::pair<std::string, int> > input) {
+    std::vector<std::pair<uint32_t, uint32_t>> connected_ip;
+    struct sockaddr_in ip4addr;
+    ip4addr.sin_family = AF_INET;
+
+    for (auto e: input) {
+        inet_pton(AF_INET, e.first.c_str(), &ip4addr.sin_addr);
+        uint32_t res_ip = htonl(ip4addr.sin_addr.s_addr);
+        connected_ip.push_back(std::make_pair(res_ip, (uint32_t) e.second));
+    }
+
+    uint32_t size = (uint32_t) connected_ip.size();
+    int counter = 4;
+    char* data = (char*) malloc(4 + (connected_ip.size() * 8));
+
+    memcpy(data, &size, 4);
+    for (auto e: connected_ip) {
+        memcpy(data + counter, &e.first, 4);
+        memcpy(data + counter + 4, &e.second, 4);
+        counter += 8;
+    }
+    return data;
+}
 
 int main(int argc, char const *argv[]) 
 { 
@@ -68,7 +93,13 @@ int main(int argc, char const *argv[])
             memset(host, 0, sizeof(host));
             port = request.second;
             host = inet_ntoa(address.sin_addr);
-            if(write(new_socket, &connected_ip, 1024) < 0) {
+
+            // serialize data
+            char* data = serialize(connected_ip);
+            uint32_t size;
+
+            memcpy(&size, data, 4);
+            if(write(new_socket, data, 4 + (connected_ip.size() * 8)) < 0) {
                 puts("ewe");
             }
             connected_ip.push_back(std::make_pair(std::string(host), port));
