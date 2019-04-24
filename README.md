@@ -4,7 +4,7 @@ Wedit - Real-Time Collaborative Text Editor
 &middot;
 [![GitLab license](https://img.shields.io/github/license/Day8/re-frame.svg)](LICENSE)
 =====
-> is an open-source, real-time, collaborative text editor for the browser built from scratch in CPP using Peer-to-Peer connection and CRDT.
+> Wedit is an open-source, real-time, collaborative text editor for the browser built from scratch in CPP using Peer-to-Peer connection and CRDT.
 
 ## Table Of Contents
 - [Introduction](#introduction)
