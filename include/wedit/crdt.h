@@ -2,7 +2,8 @@
 #define WEDIT_CRDT_H_
 
 #include <stdint.h>
-#include <forward_list>
+#include <vector>
+#include <unordered_map>
 
 #include "item.h"
 
@@ -10,11 +11,12 @@ using namespace std;
 
 class CRDT {
     private:
-        forward_list<Item> items;
+        vector<Item> items;
+        unordered_map<uint32_t, bool> strategies;
 
 	public:
-        const uint8_t id;
-        uint8_t counter;
+        const uint8_t site_id;
+        uint8_t site_counter;
 
         static uint8_t GenerateSiteID();
 		CRDT();
@@ -22,7 +24,9 @@ class CRDT {
         Item LocalDelete(uint32_t index);
         void RemoteInsert(Item item);
         void RemoteDelete(Item item);
-        vector<uint32_t> GetGlobalIndex(uint32_t left, uint32_t right);
+        vector<uint32_t> GetGlobalIndex(uint32_t index);
+        bool GetStrategyAtDepth(uint32_t depth);
+        void PrintItems();
 };
 
 #endif  // WEDIT_CRDT_H_
