@@ -26,26 +26,26 @@ const int SERVER_PORT = 5000;
 class Peer {
 private:
     /* data */
-    int portNumber;
-    int serverSocketID;
-    std::vector<int> clientSockIDs;
+    int port_number;
+    int server_socket_ID;
+    std::vector<int> client_sock_IDs;
     fd_set readfds;
     int max_sd;
-    std::thread serverThread;
+    std::thread server_thread;
 
     /* Method */
     void accept();
     void leave();
 
 public:
-    Peer(int portNumber);
+    Peer(int port_number);
     ~Peer();
 
-    int connect(std::string host, int port);
-    void send(std::string payload) const;
+    int Connect(std::string host, int port);
+    void Send(std::string payload) const;
 
-    std::vector<std::pair<std::string, int> > getConnectedIP();
-    void test();
+    std::vector<std::pair<std::string, int> > GetConnectedIP();
+    void Test();
 };
 
 #endif

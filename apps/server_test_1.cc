@@ -1,4 +1,4 @@
-#include "Peer.h"
+#include "peer.h"
 #include <iostream>
 #include <thread>
 
@@ -6,7 +6,7 @@ int main() {
     std::string huyu;
 
     Peer p(5000);
-    p.getConnectedIP();
+    p.GetConnectedIP();
 
     return 0;
 }
