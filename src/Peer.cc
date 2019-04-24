@@ -1,4 +1,5 @@
 #include "Peer.h"
+#include <iostream>
 
 void error(const char *msg) {
     perror(msg);
@@ -187,6 +188,7 @@ int Peer::connect(std::string host, int port) {
 
 std::vector<std::pair<std::string, int> > Peer::getConnectedIP() {
     std::vector<std::pair<std::string, int> > res;
+    char *test = (char*) malloc(1024);
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
@@ -217,12 +219,31 @@ std::vector<std::pair<std::string, int> > Peer::getConnectedIP() {
     n = write(sockfd, &payload, sizeof(std::pair<int, int>));
     if (n < 0) 
          error("ERROR writing to socket");
-    n = read(sockfd, &res, 1024);
+    n = read(sockfd, test, 1024);
     if (n < 0) 
          error("ERROR reading from socket");
     printf("%d\n", n);
-    
-    for(int i = 0; i < res.size(); i++) {
+
+    // deserialize
+    uint32_t size;
+    int counter = 4;
+    memcpy(&size, test, 4);
+    for (int i = 0; i < size; i++) {
+        uint32_t res_ip;
+        uint32_t port;
+        struct in_addr sin_addr;
+        char *host = (char *) malloc(10 * sizeof(char));
+
+        memcpy(&res_ip, test + counter, 4);
+        memcpy(&port, test + counter + 4, 4);
+
+        sin_addr.s_addr = ntohl(res_ip);
+        host = inet_ntoa(sin_addr);
+        res.push_back(std::make_pair(host, (int) port));
+        counter += 8;
+    }
+
+    for (int i = 0; i < res.size(); i++) {
         printf("HOST %s, PORT %d\n", res[i].first.c_str(), res[i].second);
     }
     
