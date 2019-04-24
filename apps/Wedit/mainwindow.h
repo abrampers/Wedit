@@ -39,6 +39,11 @@ private slots:
 
     void on_actionRedo_triggered();
 
+    void on_actioncursortop_triggered();
+
+public slots:
+    void printPosition();
+
 private:
     Ui::MainWindow *ui;
     QString currentFile = "";

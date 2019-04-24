@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -80,4 +82,18 @@ void MainWindow::on_actionUndo_triggered()
 void MainWindow::on_actionRedo_triggered()
 {
     ui->textEdit->redo();
+}
+
+void MainWindow::printPosition() {
+    std::cout << ui->textEdit->textCursor().position() << std::endl;
+}
+
+void MainWindow::on_actioncursortop_triggered()
+{
+    QTextCursor c(ui->textEdit->textCursor());
+    c.setPosition(3);
+    c.deleteChar();
+    c.insertText(QString("ø"));
+    c.insertText(QString("∫"));
+    ui->textEdit->setTextCursor(c);
 }

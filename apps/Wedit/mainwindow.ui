@@ -58,8 +58,15 @@
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
    </widget>
+   <widget class="QMenu" name="menucursortop">
+    <property name="title">
+     <string>cursortop</string>
+    </property>
+    <addaction name="actioncursortop"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menucursortop"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -142,8 +149,36 @@
     <string>Ctrl+Shift+Z</string>
    </property>
   </action>
+  <action name="actioncursortop">
+   <property name="text">
+    <string>cursortop</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>textEdit</sender>
+   <signal>cursorPositionChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>printPosition()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>125</x>
+     <y>123</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>105</x>
+     <y>269</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>printPosition()</slot>
+ </slots>
 </ui>
