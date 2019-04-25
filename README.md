@@ -22,7 +22,23 @@ Recently, there are many assignments those were givens by our professors. Unfort
 * Cmake
 
 ## Run Wedit
-1. TBA.
+- Built Wedit
+```
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
+
+- Run the server (only need once)
+```
+$ ./wedit_server
+```
+
+- Run the client (can be more than once)
+```
+$ ./wedit <port>
+```
 
 ## How It Works
 - [**System Design and How It Works**](#system-design-and-how-it-works)
@@ -36,10 +52,10 @@ Wedit is a peer-to-peer, real-time collaborative text editing applicaion. The tw
 We designed Wedit to be distributed via peer-to-peer connections from the start. We consider this an advantage since a peer-to-peer connection guarantees a shortest-path distance between each users hence a more real-time experience. But, this design poses another challenge. Since our database is distributed, how do we ensure that each user's database are synced with the other users'. This is where Conflict-free Replicated Data Type (CRDT) comes in. This data type provides us with the two properties that we need to ensure a consistent database which are commutativity and idempotency.
 
 ### More Details About Wedit
-To develop Wedit, we decided to use C++. That is because we think that implementing a CRDT will be quite complex and running and maintaining a CRDT will be quite computationally expensive (if not done correctly). So, we decided that C++, with it's flexibility, rich STLs, and speed, is the right choice. To develop the GUI, we use Qt since it provides the most complete feature set and have a comprehensive documentation. This comes at a cost, however, since we ultimately need to implement the peer-to-peer connection by ourselves from scratch but we think it is a fair tradeoff.
+To develop Wedit, we decided to use C++. That is because we think that implementing a CRDT will be quite complex and running and maintaining a CRDT will be quite computationally expensive (if not done correctly). So, we decided that C++, with it's flexibility, rich STLs, and speed, is the right choice. To develop the GUI, we use Qt since it provides the most complete feature set and have a comprehensive documentation. This comes at a cost, however, since we ultimately need to implement the peer-to-peer connection by ourselves from scratch using TCP sockets but we think it is a fair tradeoff.
 
 ### Self-Analysis Of Wedit
-TBA
+From the beginning we take performance-related considerations very seriously. That is why we implemented every aspect of the CRDT as efficient as possible and we also utilize C++'s many STLs to achieve high performance on many of the CRDT's operations. On the networking side, we use TCP sockets to ensure a lossless transfer of information. Although TCP can cause some delays on real-time systems, we think it is OK since any consistency-hampering scenarios caused by delays are largely solved by the use of CRDT. Hence we decided to prioritize achieving a lossless information transfer here.
 
 ### Wedit Testing
 TBA
