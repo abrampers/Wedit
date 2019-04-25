@@ -42,7 +42,7 @@ To develop Wedit, we decided to use C++. That is because we think that implement
 TBA
 
 ### Wedit Testing
-TBA
+![](demo.gif)
 
 ## Author
 ### Faza Fahleraz
