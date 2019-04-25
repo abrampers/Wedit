@@ -155,8 +155,8 @@ void Peer::accept() {
                         continue;
                     }
                     cout << "kontol lu anjing\n";
-                    std::string new_str = crdt.GetString();
-                    w->setText(new_str);
+                    // std::string new_str = crdt.GetString();
+                    // w->setText(new_str);
 
                     // printf(buffer);
                     // ::send(sd , buffer , strlen(buffer) , 0 );   

@@ -22,8 +22,6 @@ public:
     explicit MainWindow(int port, QWidget *parent = nullptr);
     ~MainWindow();
 
-    void setText(std::string s);
-
 private slots:
     void on_actionNew_triggered();
 
@@ -49,11 +47,13 @@ public slots:
     void printPosition();
     void textDidChange();
     void change(int pos, int del, int add);
+    void updateText();
 
 private:
     Ui::MainWindow *ui;
     QString currentFile = "";
     Peer peer;
+    QTimer *timer;
 };
 
 #endif // MAINWINDOW_H

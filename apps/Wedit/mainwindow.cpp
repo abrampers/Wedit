@@ -6,11 +6,15 @@
 MainWindow::MainWindow(int port, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    peer(port, this)
+    peer(port, this),
+    timer(new QTimer)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
     connect( ui->textEdit->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(change(int,int,int)));
+    timer->setInterval(1000); // one second
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateText()));
+    timer->start();
 }
 
 MainWindow::~MainWindow()
@@ -105,7 +109,7 @@ void MainWindow::textDidChange() {
 }
 
 void MainWindow::change(int pos, int del, int add) {
-    // std::cout << pos << " " << del << " " << add << std::endl;
+    std::cout << "kentu" << pos << " " << del << " " << add << std::endl;
    if (del == 0 && add != 0) {
        QString added = ui->textEdit->toPlainText().mid(pos,add);
        std::cout << added.toStdString() << std::endl;
@@ -127,6 +131,7 @@ void MainWindow::change(int pos, int del, int add) {
    }
 }
 
-void MainWindow::setText(std::string s) {
-    ui->textEdit->setText(QString(s.c_str()));
+void MainWindow::updateText() {
+    std::string new_str = peer.crdt.GetString();
+    ui->textEdit->setText(QString(new_str.c_str()));
 }
