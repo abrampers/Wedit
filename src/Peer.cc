@@ -143,20 +143,25 @@ void Peer::accept() {
                     // printf("memew%s\n", buffer);
                     uint32_t action;
                     memcpy(&action, buffer, 4);
-                    puts("kento");
-                    std::cout << action << "asuuuuuu\n";
+                    // puts("kento");
+                    // std::cout << action << "asuuuuuu\n";
                     if(action == 1) {
-                        puts("jancok");
+                        // puts("jancok");
                         crdt.RemoteInsert(buffer);
+                        w->update = true;
+                        w->update_text = true;
                     } else if(action == 2) {
                         crdt.RemoteDelete(buffer);
+                        w->update = true;
+                        w->update_text = true;
                         // puts("awang");
                     } else {
+                        w->update = false;
+                        w->update_text = false;
                         continue;
                     }
-                    cout << "kontol lu anjing\n";
+                    // cout << "kontol lu anjing\n";
                     // std::string new_str = crdt.GetString();
-                    // w->setText(new_str);
 
                     // printf(buffer);
                     // ::send(sd , buffer , strlen(buffer) , 0 );   
@@ -173,7 +178,7 @@ void Peer::Send(char* payload, int size) const {
         char value;
         memcpy(&action, payload, 4);
         memcpy(&value, payload+4, 1);
-        std::cout << action << value << "jembut\n";
+        // std::cout << action << value << "jembut\n";
         if( ::write(sd, payload, size ) != size) {
             puts("error");
             perror("send");

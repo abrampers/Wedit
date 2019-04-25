@@ -22,6 +22,7 @@ Item CRDT::LocalInsert(char value, uint32_t index) {
     Item new_item(UID(this->site_id, this->site_counter, new_global_index), value);
     this->items.insert(this->items.begin() + index, new_item);
     this->site_counter ++;
+    cout << "loc insert " << index << new_item.ToString() << endl;
     return new_item;
 }
 
@@ -33,16 +34,17 @@ Item CRDT::LocalDelete(uint32_t index) {
 
 void CRDT::RemoteInsert(char *data) {
     Item item(data);
-    cout << "ewewzzzzz" << item.value << endl;
-    cout << "asdsadsadsadas" << item.uid.site_id << "," << item.uid.site_counter << endl;
+    // cout << "ewewzzzzz" << item.value << endl;
+    // cout << "asdsadsadsadas" << item.uid.site_id << "," << item.uid.site_counter << endl;
     uint32_t index = this->FindInsertIndex(item);
-    cout << "kentu\n";
+    // cout << "kentu\n";
+    cout << "rem insert " << index << item.ToString() << endl;
     if (index != UINT32_MAX) this->items.insert(this->items.begin() + index, item); // Item doesn't exist
-    cout << "jembut\n";
+    // cout << "jembut\n";
     this->IncrementPeerCounter(item.uid.site_id);
-    cout << "kontoll\n";
+    // cout << "kontoll\n";
     this->ProcessRemoteDeletionBuffer();
-    cout << "tempik\n";
+    // cout << "tempik\n";
 }
 
 void CRDT::RemoteDelete(char *data) {
@@ -149,17 +151,8 @@ uint32_t CRDT::FindIndex(Item item) {
 }
 
 uint32_t CRDT::FindInsertIndex(Item item) {
-    // cout << "jembutzzz\n";
     vector<Item>::iterator iter = lower_bound(this->items.begin(), this->items.end(), item);
-    // if (iter == this->items.end()) {
-    //     cout << "olha jembut\n";
-    // }
-    // cout << "asuuuuuuMM\n";
-    // cout << item.uid.site_id << "," << item.uid.site_counter << endl;
-    // cout << item.uid.global_index.size() << endl;
-    // cout << "kintil\n";
-    // cout << (*iter).uid.global_index.size() << endl;
-    if (iter == this->items.end()) return ((uint32_t) 0);
+    if (iter == this->items.end()) return ((uint32_t) this->items.size());
     else if (!((*iter) == item)) return ((uint32_t) (iter - this->items.begin()));
     else return UINT32_MAX; // Item already exists
 }

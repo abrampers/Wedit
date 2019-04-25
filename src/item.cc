@@ -8,7 +8,7 @@
 using namespace std;
 
 Item::Item(char* data) {
-    int action;
+    uint32_t action;
     char value;
     uint32_t site_id;
     uint32_t site_counter;
@@ -24,11 +24,12 @@ Item::Item(char* data) {
     for (int i = 0; i < size; i++) {
         uint32_t e;
         memcpy(&e, data + counter, 4);
+        cout << e << "halo\n";
         global_index.push_back(e);
         counter += 4;
     }
     this->value = value;
-    cout << site_id << ":" << site_counter << ":" << global_index.size() << endl;
+    // cout << "create item - " << site_id << ":" << site_counter << ":" << global_index.size() << endl;
     this->uid = UID(site_id, site_counter, global_index);
 }
 
@@ -40,20 +41,20 @@ Item::Item(UID uid, char value)
 
 
 bool Item::operator==(const Item& rhs) {
-    cout<<"zjcixzjcixzjc\n";
-    cout << this->uid.global_index.size() << "kentu asu\n";
-    cout << rhs.uid.global_index.size() << "jmbut asu\n";
+    // cout<<"zjcixzjcixzjc\n";
+    // cout << this->uid.global_index.size() << "kentu asu\n";
+    // cout << rhs.uid.global_index.size() << "jmbut asu\n";
     uint32_t left_size = this->uid.global_index.size();
     uint32_t right_size = rhs.uid.global_index.size();
-    cout << "memekzzz\n";
+    // cout << "memekzzz\n";
     if (left_size == right_size) {
         for (uint32_t i = 0; i < left_size; i ++) {
             if (this->uid.global_index[i] != rhs.uid.global_index[i]) return false;
         }
-        cout << "asokokokok\n";
+        // cout << "asokokokok\n";
         return ((this->uid.site_id == rhs.uid.site_id) && (this->uid.site_counter == rhs.uid.site_counter));
     } else {
-        cout << "jembaz\n";
+        // cout << "jembaz\n";
         return false;
     }
 }
@@ -83,7 +84,7 @@ string Item::ToString() const {
 }
 
 char* Item::Serialize(bool action) {
-    char* data = (char*) malloc(4 + 1 + 4 + 4 + (this->uid.global_index.size() * 4));
+    char* data = (char*) malloc(4 + 1 + 4 + 4 + 4 + (this->uid.global_index.size() * 4));
     char value = this->value;
     uint32_t site_id = this->uid.site_id;
     uint32_t site_counter = this->uid.site_counter;

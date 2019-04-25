@@ -47,6 +47,7 @@ public slots:
     void printPosition();
     void textDidChange();
     void change(int pos, int del, int add);
+    void contentsChange(int pos, int del, int add);
     void updateText();
 
 private:
@@ -54,6 +55,9 @@ private:
     QString currentFile = "";
     Peer peer;
     QTimer *timer;
+public:
+    bool update;
+    bool update_text;
 };
 
 #endif // MAINWINDOW_H
