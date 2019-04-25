@@ -58,6 +58,8 @@ To develop Wedit, we decided to use C++. That is because we think that implement
 From the beginning we take performance-related considerations very seriously. That is why we implemented every aspect of the CRDT as efficient as possible and we also utilize C++'s many STLs to achieve high performance on many of the CRDT's operations. On the networking side, we use TCP sockets to ensure a lossless transfer of information. Although TCP can cause some delays on real-time systems, we think it is OK since any consistency-hampering scenarios caused by delays are largely solved by the use of CRDT. Hence we decided to prioritize achieving a lossless information transfer here.
 
 ### Wedit Testing
+During our tests, Wedit performed well as intended. Here is a snapshot of Wedit in action:
+
 ![](demo.gif)
 
 ## Author
