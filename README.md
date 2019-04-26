@@ -63,16 +63,16 @@ During our tests, Wedit performed well as intended. Here is a snapshot of Wedit 
 ![](demo.gif)
 
 ## Author
-### Faza Fahleraz
-```
-Email: ffahleraz@gmail.com
-Github: https://github.com/ffahleraz
-```
-
 ### Nicholas Rianto Putra
 ```
 Email: nicholasmagbanua@gmail.com
 Github: https://github.com/nicholaz99
+```
+
+### Faza Fahleraz
+```
+Email: ffahleraz@gmail.com
+Github: https://github.com/ffahleraz
 ```
 
 ### Abram Perdanaputra
