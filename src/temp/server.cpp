@@ -68,7 +68,7 @@ int main(int argc, char const *argv[])
             port = request.second;
             host = inet_ntoa(address.sin_addr);
             if(write(new_socket, &connected_ip, 1024) < 0) {
-                puts("ewe");
+                puts("Success Send!!");
             }
             connected_ip.push_back(std::make_pair(std::string(host), port));
             printf("Peer %s, %d successfully added\n", host, port);

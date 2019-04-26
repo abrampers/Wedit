@@ -100,7 +100,7 @@ int main(int argc, char const *argv[])
 
             memcpy(&size, data, 4);
             if(write(new_socket, data, 4 + (connected_ip.size() * 8)) < 0) {
-                puts("ewe");
+                puts("Succes write!!");
             }
             connected_ip.push_back(std::make_pair(std::string(host), port));
             printf("Peer %s, %d successfully added\n", host, port);

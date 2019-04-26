@@ -24,12 +24,10 @@ Item::Item(char* data) {
     for (int i = 0; i < size; i++) {
         uint32_t e;
         memcpy(&e, data + counter, 4);
-        cout << e << "halo\n";
         global_index.push_back(e);
         counter += 4;
     }
     this->value = value;
-    // cout << "create item - " << site_id << ":" << site_counter << ":" << global_index.size() << endl;
     this->uid = UID(site_id, site_counter, global_index);
 }
 
@@ -41,20 +39,14 @@ Item::Item(UID uid, char value)
 
 
 bool Item::operator==(const Item& rhs) {
-    // cout<<"zjcixzjcixzjc\n";
-    // cout << this->uid.global_index.size() << "kentu asu\n";
-    // cout << rhs.uid.global_index.size() << "jmbut asu\n";
     uint32_t left_size = this->uid.global_index.size();
     uint32_t right_size = rhs.uid.global_index.size();
-    // cout << "memekzzz\n";
     if (left_size == right_size) {
         for (uint32_t i = 0; i < left_size; i ++) {
             if (this->uid.global_index[i] != rhs.uid.global_index[i]) return false;
         }
-        // cout << "asokokokok\n";
         return ((this->uid.site_id == rhs.uid.site_id) && (this->uid.site_counter == rhs.uid.site_counter));
     } else {
-        // cout << "jembaz\n";
         return false;
     }
 }
@@ -90,8 +82,7 @@ char* Item::Serialize(bool action) {
     uint32_t site_counter = this->uid.site_counter;
     uint32_t global_index_size = this->uid.global_index.size();
     uint32_t act = action ? 1 : 2;
-    // data[0] = action ? 0x1 : 0x2;
-    // data[1] = this->value;
+
     memcpy(data, &act, 4);
     memcpy(data + 4, &value, 1);
     memcpy(data + 5, &site_id, 4);

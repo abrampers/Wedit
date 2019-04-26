@@ -34,17 +34,11 @@ Item CRDT::LocalDelete(uint32_t index) {
 
 void CRDT::RemoteInsert(char *data) {
     Item item(data);
-    // cout << "ewewzzzzz" << item.value << endl;
-    // cout << "asdsadsadsadas" << item.uid.site_id << "," << item.uid.site_counter << endl;
     uint32_t index = this->FindInsertIndex(item);
-    // cout << "kentu\n";
     cout << "rem insert " << index << item.ToString() << endl;
     if (index != UINT32_MAX) this->items.insert(this->items.begin() + index, item); // Item doesn't exist
-    // cout << "jembut\n";
     this->IncrementPeerCounter(item.uid.site_id);
-    // cout << "kontoll\n";
     this->ProcessRemoteDeletionBuffer();
-    // cout << "tempik\n";
 }
 
 void CRDT::RemoteDelete(char *data) {

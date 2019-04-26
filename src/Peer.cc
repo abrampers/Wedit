@@ -10,8 +10,6 @@ void error(const char *msg) {
 Peer::Peer(int port_number, const char *server_ip, int server_port, MainWindow *w): port_number(port_number), server_ip(server_ip), server_port(server_port), w(w) {    
     if( (server_socket_ID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
         puts("Peer::Peer: failed to create socket");
-        // perror("socket failed");   
-        // exit(EXIT_FAILURE);   
     }   
 
     struct sockaddr_in address;
@@ -39,7 +37,6 @@ Peer::Peer(int port_number, const char *server_ip, int server_port, MainWindow *
         this->Connect(connected_ip[i].first, connected_ip[i].second);
     }
 
-    // this->accept();
     server_thread = std::thread(&Peer::accept, std::ref(*this));
 }
 
@@ -96,8 +93,6 @@ void Peer::accept() {
             if ((new_socket = ::accept(server_socket_ID, (struct sockaddr *) &address, (socklen_t*) &addrlen)) < 0) {   
                 puts("Peer::accept: failed to accept incoming connection");
                 return;
-                // perror("accept");   
-                // exit(EXIT_FAILURE);   
             }   
              
             //inform user of socket number - used in send and receive commands  
@@ -135,18 +130,9 @@ void Peer::accept() {
                     close( sd );   
                     client_sock_IDs.erase(client_sock_IDs.begin() + i); 
                 } else { 
-                    //set the string terminating NULL byte on the end  
-                    //of the data read  
-                    // buffer[valread] = '\0';
-                    // printf("%d\n", valread);
-                    // Handle every incoming message here;
-                    // printf("memew%s\n", buffer);
                     uint32_t action;
                     memcpy(&action, buffer, 4);
-                    // puts("kento");
-                    // std::cout << action << "asuuuuuu\n";
                     if(action == 1) {
-                        // puts("jancok");
                         crdt.RemoteInsert(buffer);
                         w->update = true;
                         w->update_text = true;
@@ -154,17 +140,11 @@ void Peer::accept() {
                         crdt.RemoteDelete(buffer);
                         w->update = true;
                         w->update_text = true;
-                        // puts("awang");
                     } else {
                         w->update = false;
                         w->update_text = false;
                         continue;
                     }
-                    // cout << "kontol lu anjing\n";
-                    // std::string new_str = crdt.GetString();
-
-                    // printf(buffer);
-                    // ::send(sd , buffer , strlen(buffer) , 0 );   
                 }   
             }   
         }   
@@ -178,7 +158,6 @@ void Peer::Send(char* payload, int size) const {
         char value;
         memcpy(&action, payload, 4);
         memcpy(&value, payload+4, 1);
-        // std::cout << action << value << "jembut\n";
         if( ::write(sd, payload, size ) != size) {
             puts("error");
             perror("send");
@@ -192,9 +171,7 @@ int Peer::Connect(std::string host, int port) {
     struct hostent *server;
 
     if( (clientSockID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
-        puts("Peer::Connect: failed to create socket");
-        // perror("socket failed");   
-        // exit(EXIT_FAILURE);  
+        puts("Peer::Connect: failed to create socket");  
         return -1; 
     }
 
@@ -207,9 +184,7 @@ int Peer::Connect(std::string host, int port) {
     address.sin_port = htons(port);
 
     if( (::connect(clientSockID , (struct sockaddr *) &address, sizeof(address))) < 0) {   
-        puts("Peer::Connect: failed to connect");
-        // perror("connect failed");   
-        // exit(EXIT_FAILURE);   
+        puts("Peer::Connect: failed to connect"); 
         return -1;
     }
 
@@ -228,7 +203,6 @@ std::vector<std::pair<std::string, int> > Peer::GetConnectedIP() {
     struct hostent *server;
 
     std::pair<int, int> payload;
-    // portno = atoi("8080");
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) 
         error("ERROR opening socket");

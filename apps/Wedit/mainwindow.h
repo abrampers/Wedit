@@ -45,10 +45,7 @@ private slots:
     void on_actioncursortop_triggered();
 
 public slots:
-    void printPosition();
-    void textDidChange();
     void change(int pos, int del, int add);
-    void contentsChange(int pos, int del, int add);
     void updateText();
 
 private:
@@ -57,6 +54,7 @@ private:
     Peer peer;
     QTimer *timer;
     QTextCursor cursor;
+    int cursorPos;
 public:
     bool update;
     bool update_text;
