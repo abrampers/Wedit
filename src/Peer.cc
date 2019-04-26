@@ -7,7 +7,7 @@ void error(const char *msg) {
     exit(0);
 }
 
-Peer::Peer(int port_number, MainWindow *w): port_number(port_number), w(w) {    
+Peer::Peer(int port_number, const char *server_ip, int server_port, MainWindow *w): port_number(port_number), server_ip(server_ip), server_port(server_port), w(w) {    
     if( (server_socket_ID = ::socket(AF_INET , SOCK_STREAM , 0)) == 0) {   
         puts("Peer::Peer: failed to create socket");
         // perror("socket failed");   
@@ -22,15 +22,15 @@ Peer::Peer(int port_number, MainWindow *w): port_number(port_number), w(w) {
     if (::bind(server_socket_ID, (struct sockaddr *) &address, sizeof(address)) < 0)   
     {   
         puts("Peer::Peer: failed to bind");
-        // perror("bind failed");   
-        // exit(EXIT_FAILURE);   
+        perror("bind failed");   
+        exit(EXIT_FAILURE);   
     }   
     printf("Listener on port %d \n", port_number);
 
     if (::listen(server_socket_ID, MAX_PENDING) < 0)    {
         puts("Peer::Peer: failed to listen");
-        // perror("listen");   
-        // exit(EXIT_FAILURE);   
+        perror("listen");   
+        exit(EXIT_FAILURE);   
     }
 
     // Connect to all connected peers
@@ -228,11 +228,11 @@ std::vector<std::pair<std::string, int> > Peer::GetConnectedIP() {
     struct hostent *server;
 
     std::pair<int, int> payload;
-    portno = atoi("8080");
+    // portno = atoi("8080");
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) 
         error("ERROR opening socket");
-    server = gethostbyname("0.0.0.0");
+    server = gethostbyname(server_ip);
     if (server == NULL) {
         fprintf(stderr,"ERROR, no such host\n");
         exit(0);
@@ -242,7 +242,7 @@ std::vector<std::pair<std::string, int> > Peer::GetConnectedIP() {
     bcopy((char *)server->h_addr, 
          (char *)&serv_addr.sin_addr.s_addr,
          server->h_length);
-    serv_addr.sin_port = htons(portno);
+    serv_addr.sin_port = htons(server_port);
     if (::connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
     printf("Please enter the message: ");

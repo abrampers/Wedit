@@ -3,10 +3,10 @@
 
 #include <iostream>
 
-MainWindow::MainWindow(int port, QWidget *parent) :
+MainWindow::MainWindow(int port, const char *server_ip, int server_port, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    peer(port, this),
+    peer(port, server_ip, server_port, this),
     timer(new QTimer)
 {
     this->update = false;

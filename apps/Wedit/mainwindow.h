@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(int port, QWidget *parent = nullptr);
+    explicit MainWindow(int port, const char *server_ip, int server_port, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:

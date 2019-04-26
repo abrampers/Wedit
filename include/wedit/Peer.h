@@ -38,13 +38,16 @@ private:
     std::thread server_thread;
     MainWindow *w;
 
+    const char *server_ip;
+    int server_port;
+
     void accept();
     void leave();
 
 public:
     CRDT crdt;
 
-    Peer(int port_number, MainWindow *w);
+    Peer(int port_number, const char *server_ip, int server_port, MainWindow *w);
     ~Peer();
 
     int Connect(std::string host, int port);
