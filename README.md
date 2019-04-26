@@ -12,7 +12,6 @@ Wedit - Real-Time Collaborative Text Editor
 - [Run Wedit](#run-wedit)
 - [How It Works](#how-it-works)
 - [Author](#author)
-- [Words From Author](#words-from-author)
 
 ## Introduction
 Recently, there are many assignments those were givens by our professors. Unfortunately, we couldn't meet each other because we have our own activities. We decided to work remotely from our own places. That's why we use Google Docs, an online collaborative editors created by Google, in order to finish all our assignments reports. We were amazed with the Google Docs because of its live-editing features. Intrigued by Google Docs, we try to challenge ourselves and set out to build one from scratch using CPP.
