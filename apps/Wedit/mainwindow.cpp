@@ -163,13 +163,13 @@ void MainWindow::change(int pos, int del, int add) {
             int size = 4 + 1 + 4 + 4 + (item.uid.global_index.size() * 4);
             peer.Send(item.Serialize(false), size);
         }
+        cursor = ui->textEdit->textCursor();
     }
 }
 
 void MainWindow::updateText() {
     // std::cout << "UPDATE: " << this->update << std::endl;
     if (this->update) {
-        cursor = ui->textEdit->textCursor();
         this->update_text = true;
         std::string new_str = peer.crdt.GetString();
         ui->textEdit->setText(QString(new_str.c_str()));
