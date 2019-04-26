@@ -37,7 +37,7 @@ $ ./wedit_server
 
 - Run the client (can be more than once)
 ```
-$ ./wedit <port>
+$ ./wedit <PEER_PORT> <SERVER_IP> <SERVER_PORT>
 ```
 
 ## How It Works
@@ -65,28 +65,18 @@ During our tests, Wedit performed well as intended. Here is a snapshot of Wedit 
 ## Author
 ### Faza Fahleraz
 ```
-Email: 13516095@std.stei.itb.ac.id
+Email: ffahleraz@gmail.com
 Github: https://github.com/ffahleraz
-Task: 33%
 ```
 
 ### Nicholas Rianto Putra
 ```
-Email: 13516020@std.stei.itb.ac.id
+Email: nicholasmagbanua@gmail.com
 Github: https://github.com/nicholaz99
-Task: 33%
 ```
 
 ### Abram Perdanaputra
 ```
-Email: 13516083@std.stei.itb.ac.id
+Email: abram.perdanaputra@gmail.com
 Github: https://github.com/abrampers
-Task: 33%
-```
-
-### Joko Widodo
-```
-Email: jokowi@indonesia.id
-Github: http://presidenri.go.id
-Task: 1%
 ```
