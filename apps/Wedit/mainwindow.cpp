@@ -14,6 +14,7 @@ MainWindow::MainWindow(int port, const char *server_ip, int server_port, QWidget
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
     bool application_change = true;
+    cursor = ui->textEdit->textCursor();
     // connect( ui->textEdit->document(), &QTextDocument::contentsChange, this->change(int, int, int)));
     connect(ui->textEdit->document(), &QTextDocument::contentsChange,
     [=, &application_change](int pos, int del, int add){
@@ -168,9 +169,11 @@ void MainWindow::change(int pos, int del, int add) {
 void MainWindow::updateText() {
     // std::cout << "UPDATE: " << this->update << std::endl;
     if (this->update) {
+        cursor = ui->textEdit->textCursor();
         this->update_text = true;
         std::string new_str = peer.crdt.GetString();
         ui->textEdit->setText(QString(new_str.c_str()));
         this->update = false;
+        ui->textEdit->setTextCursor(cursor);
     }
 }

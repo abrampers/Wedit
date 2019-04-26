@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QTimer>
+#include <QTextCursor>
 #include "peer.h"
 
 namespace Ui {
@@ -55,6 +56,7 @@ private:
     QString currentFile = "";
     Peer peer;
     QTimer *timer;
+    QTextCursor cursor;
 public:
     bool update;
     bool update_text;
