@@ -97,6 +97,10 @@ void MainWindow::on_actionRedo_triggered()
     ui->textEdit->redo();
 }
 
+void MainWindow::printPosition(){};
+
+void MainWindow::textDidChange(){};
+
 void MainWindow::on_actioncursortop_triggered()
 {
     QTextCursor c(ui->textEdit->textCursor());

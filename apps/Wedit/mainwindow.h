@@ -45,6 +45,8 @@ private slots:
     void on_actioncursortop_triggered();
 
 public slots:
+    void printPosition();
+    void textDidChange();
     void change(int pos, int del, int add);
     void updateText();
 
